@@ -1,0 +1,86 @@
+{
+  "personalInfo": {
+    "name": "Naveen Chelo",
+    "title": "Frontend Developer",
+    "location": "Bengaluru, India",
+    "email": "chelonaveen07@gmail.com",
+    "phone": "8328681356",
+    "linkedin": "linkedin.com/in/naveen-chelo",
+    "github": "github.com/naveenchelo",
+    "summary": "Frontend Developer with 3 years of experience at Tata Consultancy Services, specializing in building responsive and scalable web applications using Angular (v17+), TypeScript, and NgRx."
+  },
+  "skills": {
+    "languages": ["TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Sass"],
+    "frameworks": [
+      "Angular (v17+)",
+      "NgRx",
+      "RxJS",
+      "Angular Material",
+      "Native Federation"
+    ],
+    "tools": [
+      "Git",
+      "VS Code",
+      "Figma",
+      "REST API Integration",
+      "JIRA",
+      "CI/CD Pipelines"
+    ],
+    "concepts": [
+      "Micro Front-end Architecture",
+      "Module Federation",
+      "Responsive Web Design",
+      "State Management",
+      "Agile Methodologies"
+    ]
+  },
+  "experience": [
+    {
+      "id": 1,
+      "position": "Software Developer",
+      "company": "Tata Consultancy Services Pvt Ltd",
+      "duration": "Mar 2022 – Present",
+      "clients": [
+        {
+          "name": "NEST UK",
+          "period": "Aug 2023 – Present",
+          "achievements": [
+            "Led design and development of critical modules for a large-scale pension management platform",
+            "Engineered shell and module connections within a micro front-end architecture",
+            "Implemented robust NgRx state management"
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Micro-Frontend Financial Retail Hub",
+      "description": "Comprehensive micro-frontend application comprising a feature-rich banking module and an interactive retail e-commerce module",
+      "technologies": [
+        "Angular",
+        "TypeScript",
+        "Native Federation",
+        "NgRx",
+        "HTML",
+        "CSS/Sass",
+        "REST APIs"
+      ],
+      "githubUrl": "https://github.com/naveenchelo",
+      "liveUrl": "",
+      "image": "assets/images/project1.jpg"
+    }
+  ],
+  "education": {
+    "degree": "B.Tech in Civil Engineering",
+    "institution": "Sree Vidyanikethan Engineering College",
+    "location": "Tirupati, Andhra Pradesh, India",
+    "year": "2016 – 2020"
+  },
+  "certifications": [
+    "Introduction to Angular - Udemy",
+    "JavaScript Fundamentals - Udemy",
+    "TypeScript Essentials - Udemy"
+  ]
+}
