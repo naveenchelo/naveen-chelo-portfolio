@@ -1,5 +1,8 @@
 # NaveenCheloPortfolio
 
+![Deploy to GitHub Pages](https://github.com/naveenchelo/naveen-chelo-portfolio/actions/workflows/deploy.yml/badge.svg)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.20.
 
 ## Development server
