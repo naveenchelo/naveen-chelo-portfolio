@@ -67,7 +67,20 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "naveen-chelo-portfolio:build:production"
+              "baseHref": "/portfolio-website/",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
             },
             "development": {
               "buildTarget": "naveen-chelo-portfolio:build:development"
