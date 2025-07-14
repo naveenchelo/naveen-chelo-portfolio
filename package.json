@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "build:prod": "ng build --configuration production",
-    "deploy": "ng build --configuration production --base-href /portfolio-website/ && npx angular-cli-ghpages --dir=dist/naveen-chelo-portfolio/browser",  
+    "build:prod": "ng build --configuration production --base-href /naveen-chelo-portfolio/",
+    "deploy": "ng build --configuration production && cp dist/naveen-chelo-portfolio/browser/index.html dist/naveen-chelo-portfolio/browser/404.html && npx angular-cli-ghpages --dir=dist/naveen-chelo-portfolio/browser",
     "test": "ng test"
   },
   "private": true,
