@@ -3,8 +3,7 @@ import { PersonalInfoInterface } from '../../core/models/portfolio.interface';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
-import emailjs from '@emailjs/browser';
-import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -18,9 +17,13 @@ export class ContactComponent implements OnInit {
   submitMessage = '';
   submitMessageType: 'success' | 'error' | '' = '';
 
+  private readonly WEB3FORMS_ACCESS_KEY =
+    'c579947d-cd4b-4cb7-a472-12a59355c8a5';
+
   constructor(
     private portfolioSandbox: PortfolioSandbox,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {
     this.personalInfo$ = this.portfolioSandbox.personalInfo$;
     this.contactForm = this.fb.group({
@@ -31,9 +34,7 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    emailjs.init(environment.emailjs.publicKey);
-  }
+  ngOnInit() {}
 
   async onSubmit() {
     if (this.contactForm.valid) {
@@ -42,36 +43,34 @@ export class ContactComponent implements OnInit {
       this.submitMessageType = '';
 
       try {
-        const formData = this.contactForm.value;
+        const formData = new FormData();
+        const formValues = this.contactForm.value;
 
-        // EmailJS send method using environment configuration
-        const result = await emailjs.send(
-          environment.emailjs.serviceId,
-          environment.emailjs.templateId,
-          {
-            name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            time: new Date().toLocaleString('en-US', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              timeZoneName: 'short',
-            }),
-            reply_to: formData.email,
-            to_email: 'chelonaveen07@gmail.com',
-          }
-        );
+        // Add Web3Forms required fields
+        formData.append('access_key', this.WEB3FORMS_ACCESS_KEY);
+        formData.append('name', formValues.name);
+        formData.append('email', formValues.email);
+        formData.append('subject', formValues.subject);
+        formData.append('message', formValues.message);
 
-        console.log('Email sent successfully:', result);
-        this.submitMessage =
-          'Thank you for your message! I will get back to you soon.';
-        this.submitMessageType = 'success';
-        this.contactForm.reset();
+        // Optional: Add additional fields for better email formatting
+        formData.append('from_name', formValues.name);
+        formData.append('replyto', formValues.email);
+
+        // Send the form to Web3Forms
+        const response: any = await this.http
+          .post('https://api.web3forms.com/submit', formData)
+          .toPromise();
+
+        if (response.success) {
+          console.log('Email sent successfully:', response);
+          this.submitMessage =
+            'Thank you for your message! I will get back to you soon.';
+          this.submitMessageType = 'success';
+          this.contactForm.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
       } catch (error) {
         console.error('Error sending email:', error);
         this.submitMessage =
