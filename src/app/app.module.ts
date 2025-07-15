@@ -19,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './store/reducers/app.reducer';
 import { PortfolioEffects } from './store/effects/portfolio.effects';
+import { PortfolioSandbox } from './sandbox/portfolio.sandbox';
 
 @NgModule({
   declarations: [

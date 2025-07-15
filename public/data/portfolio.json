@@ -5,9 +5,9 @@
     "location": "Bengaluru, India",
     "email": "chelonaveen07@gmail.com",
     "phone": "8328681356",
-    "linkedin": "https://linkedin.com/in/naveen-chelo",
+    "linkedin": "https://www.linkedin.com/in/naveen-chelo-12b64816b/",
     "github": "https://github.com/naveenchelo",
-    "profileImage": "assets/images/naveen-profile.jpg",
+    "profileImage": "images/naveen-profile.jpg",
     "summary": "Frontend Developer with 3 years of experience at Tata Consultancy Services, specializing in building responsive and scalable web applications using Angular (v17+), TypeScript, and NgRx. Proficient in micro front-end architecture, state management, and reusable UI component library development. Known for writing clean, maintainable code, optimizing performance, and collaborating closely with cross-functional teams to deliver high-quality user experiences."
   },
   "skills": {
@@ -77,33 +77,6 @@
   "projects": [
     {
       "id": 1,
-      "title": "Micro-Frontend Financial Retail Hub",
-      "description": "Developing a comprehensive micro-frontend application comprising a feature-rich banking module and an interactive retail e-commerce module, orchestrated via a shell application.",
-      "longDescription": "This project demonstrates advanced micro-frontend architecture using Angular and Native Federation. The application consists of multiple independently deployable micro-apps that communicate seamlessly through a shell application. The banking module handles financial transactions and account management, while the retail module provides e-commerce functionality. Both modules utilize NgRx for state management and are designed to work independently or as part of the larger ecosystem.",
-      "technologies": [
-        "Angular",
-        "TypeScript",
-        "Native Federation",
-        "Module Federation",
-        "NgRx",
-        "HTML5",
-        "CSS3/Sass",
-        "REST APIs"
-      ],
-      "githubUrl": "https://github.com/naveenchelo/micro-frontend-financial-retail",
-      "liveUrl": "https://naveenchelo.github.io/micro-frontend-financial-retail",
-      "image": "assets/images/micro-frontend-project.jpg",
-      "featured": true,
-      "status": "In Development",
-      "highlights": [
-        "Micro-frontend architecture with Native Federation",
-        "Independent deployment of banking and retail modules",
-        "Shared state management across micro-apps",
-        "Responsive design with Angular Material"
-      ]
-    },
-    {
-      "id": 2,
       "title": "NEST UK Pension Management Platform",
       "description": "Critical modules for a large-scale pension management platform serving millions of users across the UK.",
       "longDescription": "As part of the NEST UK team, I contributed to building and maintaining critical modules for one of the UK's largest pension management platforms. The project involved complex state management, micro-frontend architecture, and seamless integration with multiple backend services. The platform handles sensitive financial data and requires high performance, security, and scalability.",
@@ -119,7 +92,7 @@
       ],
       "githubUrl": "",
       "liveUrl": "https://www.nestpensions.org.uk",
-      "image": "assets/images/nest-pension-project.jpg",
+      "image": "images/nest-pension-project.svg",
       "featured": true,
       "status": "Production",
       "highlights": [
@@ -130,7 +103,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 2,
       "title": "CVS Pharmacy Customer Portal",
       "description": "Customer-facing pharmacy portal with comprehensive UX/UI features for prescription management and healthcare services.",
       "longDescription": "Developed key components for CVS Pharmacy's customer portal, focusing on user experience and seamless integration with multiple healthcare APIs. The project involved creating reusable Angular components, implementing responsive design principles, and ensuring HIPAA compliance for healthcare data handling.",
@@ -144,8 +117,8 @@
         "Healthcare APIs"
       ],
       "githubUrl": "",
-      "liveUrl": "https://www.cvs.com",
-      "image": "assets/images/cvs-pharmacy-project.jpg",
+      "liveUrl": "https://www.cvshealth.com/",
+      "image": "images/cvs-pharmacy-project.svg",
       "featured": true,
       "status": "Production",
       "highlights": [
@@ -154,32 +127,6 @@
         "Responsive design implementation",
         "User-centric design approach"
       ]
-    },
-    {
-      "id": 4,
-      "title": "Angular Portfolio Website",
-      "description": "Modern, responsive portfolio website built with Angular, NgRx, and deployed on GitHub Pages.",
-      "longDescription": "A showcase portfolio website demonstrating modern Angular development practices, including NgRx state management, sandbox pattern, and responsive design. The site features smooth animations, optimized performance, and follows Angular best practices for maintainable code architecture.",
-      "technologies": [
-        "Angular",
-        "NgRx",
-        "TypeScript",
-        "Angular Material",
-        "Sass",
-        "GitHub Pages",
-        "AOS Animations"
-      ],
-      "githubUrl": "https://github.com/naveenchelo/portfolio-website",
-      "liveUrl": "https://naveenchelo.github.io/portfolio-website",
-      "image": "assets/images/portfolio-website-project.jpg",
-      "featured": false,
-      "status": "Completed",
-      "highlights": [
-        "NgRx state management implementation",
-        "Sandbox pattern architecture",
-        "Responsive design with animations",
-        "GitHub Pages deployment"
-      ]
     }
   ],
   "education": {
@@ -187,13 +134,7 @@
     "institution": "Sree Vidyanikethan Engineering College",
     "location": "Tirupati, Andhra Pradesh, India",
     "year": "2016 – 2020",
-    "gpa": "7.8/10",
-    "relevantCourses": [
-      "Mathematics",
-      "Computer Applications",
-      "Engineering Graphics",
-      "Project Management"
-    ]
+    "gpa": "6.9/10"
   },
   "certifications": [
     {

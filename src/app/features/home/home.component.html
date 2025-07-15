@@ -1,1 +1,30 @@
-<p>home works!</p>
+<section class="hero-section">
+  <div class="hero-content" *ngIf="personalInfo$ | async as personalInfo">
+    <div class="hero-text" data-aos="fade-up">
+      <h1 class="hero-title">
+        Hi, I'm <span class="highlight">{{ personalInfo.name }}</span>
+      </h1>
+      <h2 class="hero-subtitle">{{ personalInfo.title }}</h2>
+      <p class="hero-description">{{ personalInfo.summary }}</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" (click)="scrollToProjects()">
+          View My Work
+        </button>
+        <button class="btn btn-outline" (click)="scrollToContact()">
+          Get In Touch
+        </button>
+      </div>
+    </div>
+    <div class="hero-image" data-aos="fade-left">
+      <div class="image-container">
+        <img [src]="personalInfo.profileImage" [alt]="personalInfo.name" />
+        <div class="image-overlay"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-indicator" (click)="scrollToAbout()">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+</section>

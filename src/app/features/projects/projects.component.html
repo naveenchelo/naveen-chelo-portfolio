@@ -1,1 +1,76 @@
-<p>projects works!</p>
+<section class="projects-section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">What I've been working on</p>
+    </div>
+
+    <div class="projects-filter" data-aos="fade-up">
+      <button class="filter-btn active" (click)="filterProjects('all')">
+        All
+      </button>
+      <button class="filter-btn" (click)="filterProjects('featured')">
+        Featured
+      </button>
+      <button class="filter-btn" (click)="filterProjects('production')">
+        Production
+      </button>
+    </div>
+
+    <div class="projects-grid" *ngIf="projects$ | async as projects">
+      <div
+        class="project-card"
+        *ngFor="let project of filteredProjects; let i = index"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="i * 100"
+      >
+        <div class="project-image">
+          <img [src]="project.image" [alt]="project.title" />
+          <div class="project-overlay">
+            <div class="project-actions">
+              <a
+                [href]="project.liveUrl"
+                target="_blank"
+                *ngIf="project.liveUrl"
+                class="btn btn-primary"
+              >
+                <i class="fas fa-external-link-alt"></i> About CVS Helath
+              </a>
+              <a
+                [href]="project.githubUrl"
+                target="_blank"
+                *ngIf="project.githubUrl"
+                class="btn btn-outline"
+              >
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-content">
+          <div class="project-header">
+            <h3>{{ project.title }}</h3>
+          </div>
+
+          <p class="project-description">{{ project.description }}</p>
+
+          <div class="project-technologies">
+            <span class="tech-tag" *ngFor="let tech of project.technologies">
+              {{ tech }}
+            </span>
+          </div>
+
+          <div class="project-highlights" *ngIf="project.highlights">
+            <h4>Key Features:</h4>
+            <ul>
+              <li *ngFor="let highlight of project.highlights">
+                {{ highlight }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

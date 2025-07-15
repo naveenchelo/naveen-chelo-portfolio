@@ -7,7 +7,7 @@ import { PortfolioInterface } from '../models/portfolio.interface';
   providedIn: 'root',
 })
 export class PortfolioService {
-  private readonly DATA_URL = 'assets/data/portfolio.json';
+  private readonly DATA_URL = 'data/portfolio.json';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,7 @@ export class PortfolioService {
       ...data,
       projects: data.projects.map((project) => ({
         ...project,
-        image: project.image || 'assets/images/default-project.jpg',
+        image: project.image || 'images/default-project.jpg',
       })),
     };
   }

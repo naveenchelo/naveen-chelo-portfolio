@@ -1,10 +1,28 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import {
+  EducationInterface,
+  PersonalInfoInterface,
+} from '../../core/models/portfolio.interface';
+import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss'
+  styleUrl: './about.component.scss',
 })
 export class AboutComponent {
+  personalInfo$!: Observable<PersonalInfoInterface | undefined>;
+  education$!: Observable<EducationInterface | undefined>;
+  totalExperience$!: Observable<string>;
+  totalProjects$!: Observable<number>;
+  currentClient$!: Observable<string>;
 
+  constructor(private portfolioSandbox: PortfolioSandbox) {
+    this.personalInfo$ = this.portfolioSandbox.personalInfo$;
+    this.education$ = this.portfolioSandbox.education$;
+    this.totalExperience$ = this.portfolioSandbox.totalExperience$;
+    this.totalProjects$ = this.portfolioSandbox.totalProjects$;
+    this.currentClient$ = this.portfolioSandbox.getCurrentClient();
+  }
 }

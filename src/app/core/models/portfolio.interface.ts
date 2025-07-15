@@ -42,6 +42,8 @@ export interface ProjectInterface {
   liveUrl?: string;
   image: string;
   featured?: boolean;
+  status: string;
+  highlights: string[];
 }
 
 export interface EducationInterface {
