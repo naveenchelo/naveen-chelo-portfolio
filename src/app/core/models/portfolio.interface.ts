@@ -29,6 +29,8 @@ export interface ExperienceInterface {
   company: string;
   duration: string;
   clients: ClientInterface[];
+  startDate: string;
+  endDate?: string;
 }
 
 export interface ProjectInterface {

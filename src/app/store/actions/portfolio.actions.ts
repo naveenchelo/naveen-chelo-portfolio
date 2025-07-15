@@ -13,3 +13,5 @@ export const loadPortfolioDataFailure = createAction(
   '[Portfolio] Load Portfolio Data Failure',
   props<{ error: any }>()
 );
+
+export const resetPortfolioState = createAction('[Portfolio] Reset State');
