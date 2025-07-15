@@ -88,13 +88,35 @@
             ></textarea>
           </div>
 
+          <!-- Success/Error Message -->
+          <div class="form-message" *ngIf="submitMessage">
+            <div
+              class="message-alert"
+              [class.success]="submitMessageType === 'success'"
+              [class.error]="submitMessageType === 'error'"
+            >
+              <i
+                class="fas fa-check-circle"
+                *ngIf="submitMessageType === 'success'"
+              ></i>
+              <i
+                class="fas fa-exclamation-circle"
+                *ngIf="submitMessageType === 'error'"
+              ></i>
+              {{ submitMessage }}
+            </div>
+          </div>
+
           <button
             type="submit"
             class="btn btn-primary"
             [disabled]="contactForm.invalid || isSubmitting"
           >
             <span *ngIf="!isSubmitting">Send Message</span>
-            <span *ngIf="isSubmitting">Sending...</span>
+            <span *ngIf="isSubmitting">
+              <i class="fas fa-spinner fa-spin"></i>
+              Sending...
+            </span>
           </button>
         </form>
       </div>
