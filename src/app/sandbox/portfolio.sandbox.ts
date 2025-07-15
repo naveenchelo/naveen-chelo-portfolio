@@ -1,19 +1,21 @@
 import { inject, Injectable } from '@angular/core';
-import { combineLatest, filter, map, Observable, of, timer } from 'rxjs';
-import {
-  EducationInterface,
-  ExperienceInterface,
-  PersonalInfoInterface,
-  PortfolioInterface,
-  ProjectInterface,
-  SkillsInterface,
-} from '../core/models/portfolio.interface';
 import { Store } from '@ngrx/store';
+import { Observable, combineLatest, map, filter, timer } from 'rxjs';
 import { AppState } from '../store/state/app.state';
-import * as PortfolioSelectors from '../store/selectors/portfolio.selectors';
 import * as PortfolioActions from '../store/actions/portfolio.actions';
+import * as PortfolioSelectors from '../store/selectors/portfolio.selectors';
+import {
+  PortfolioInterface,
+  PersonalInfoInterface,
+  SkillsInterface,
+  ExperienceInterface,
+  ProjectInterface,
+  EducationInterface,
+} from '../core/models/portfolio.interface';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class PortfolioSandbox {
   private store = inject(Store<AppState>);
 
@@ -33,6 +35,51 @@ export class PortfolioSandbox {
   // Specific data selectors
   public get personalInfo$(): Observable<PersonalInfoInterface | undefined> {
     return this.store.select(PortfolioSelectors.selectPersonalInfo);
+  }
+
+  //PersonalInfo with dynamic summary
+  public get enhancedPersonalInfo$(): Observable<
+    PersonalInfoInterface | undefined
+  > {
+    return combineLatest([this.personalInfo$, this.totalExperience$]).pipe(
+      map(([personalInfo, totalExperience]) => {
+        if (!personalInfo) return personalInfo;
+
+        const updatedSummary = personalInfo.summary.replace(
+          /\d+(\.\d+)?\s*years?\s*of\s*experience/gi,
+          `${totalExperience} of experience`
+        );
+
+        return {
+          ...personalInfo,
+          summary: updatedSummary,
+        };
+      })
+    );
+  }
+
+  // PersonalInfo with real-time experience updates
+  public get enhancedPersonalInfoRealTime$(): Observable<
+    PersonalInfoInterface | undefined
+  > {
+    return combineLatest([
+      this.personalInfo$,
+      this.totalExperienceRealTime$,
+    ]).pipe(
+      map(([personalInfo, totalExperience]) => {
+        if (!personalInfo) return personalInfo;
+
+        const updatedSummary = personalInfo.summary.replace(
+          /\d+(\.\d+)?\s*years?\s*of\s*experience/gi,
+          `${totalExperience} of experience`
+        );
+
+        return {
+          ...personalInfo,
+          summary: updatedSummary,
+        };
+      })
+    );
   }
 
   public get skills$(): Observable<SkillsInterface | undefined> {
@@ -75,7 +122,7 @@ export class PortfolioSandbox {
     );
   }
 
-  // Recalculate every time it's accessed with current date
+  // Experience calculation
   public readonly totalExperience$: Observable<string> = this.experience$.pipe(
     map((experience) => {
       if (!experience || experience.length === 0) return '0 years';
@@ -83,8 +130,21 @@ export class PortfolioSandbox {
       const currentDate = new Date();
 
       const totalMonths = experience.reduce((acc, exp) => {
-        const start = new Date(exp.startDate);
-        const end = exp.endDate ? new Date(exp.endDate) : currentDate;
+        // Parse duration string from JSON (e.g., "Mar 2022 – Present")
+        const durationParts = exp.duration.split(' – ');
+        const startDateStr = durationParts[0];
+        const endDateStr = durationParts[1];
+
+        // Parse start date
+        const start = new Date(startDateStr + ' 1');
+
+        // Parse end date
+        let end: Date;
+        if (endDateStr === 'Present') {
+          end = currentDate;
+        } else {
+          end = new Date(endDateStr + ' 1');
+        }
 
         // Calculate months between start and end dates
         const months =
@@ -99,7 +159,9 @@ export class PortfolioSandbox {
       const remainderMonths = totalMonths % 12;
 
       if (years >= 3) {
-        return '3+ years';
+        // Show exact years with decimal for 3+ years
+        const exactYears = (totalMonths / 12).toFixed(1);
+        return `${exactYears} years`;
       }
 
       if (years === 0) {
@@ -127,8 +189,21 @@ export class PortfolioSandbox {
       const currentDate = new Date();
 
       const totalMonths = experience.reduce((acc, exp) => {
-        const start = new Date(exp.startDate);
-        const end = exp.endDate ? new Date(exp.endDate) : currentDate;
+        // Parse duration string from JSON (e.g., "Mar 2022 – Present")
+        const durationParts = exp.duration.split(' – ');
+        const startDateStr = durationParts[0];
+        const endDateStr = durationParts[1];
+
+        // Parse start date
+        const start = new Date(startDateStr + ' 1');
+
+        // Parse end date
+        let end: Date;
+        if (endDateStr === 'Present') {
+          end = currentDate;
+        } else {
+          end = new Date(endDateStr + ' 1');
+        }
 
         const months =
           (end.getFullYear() - start.getFullYear()) * 12 +
@@ -142,7 +217,9 @@ export class PortfolioSandbox {
       const remainderMonths = totalMonths % 12;
 
       if (years >= 3) {
-        return '3+ years';
+        // Show exact years with decimal for 3+ years
+        const exactYears = (totalMonths / 12).toFixed(1);
+        return `${exactYears} years`;
       }
 
       if (years === 0) {
@@ -166,10 +243,14 @@ export class PortfolioSandbox {
         if (!experience || experience.length === 0) return '0 months';
 
         const currentExp = experience[0];
-        const start = new Date(currentExp.startDate);
-        const end = currentExp.endDate
-          ? new Date(currentExp.endDate)
-          : new Date();
+        // Parse duration string from JSON (e.g., "Mar 2022 – Present")
+        const durationParts = currentExp.duration.split(' – ');
+        const startDateStr = durationParts[0];
+        const endDateStr = durationParts[1];
+
+        const start = new Date(startDateStr + ' 1');
+        const end =
+          endDateStr === 'Present' ? new Date() : new Date(endDateStr + ' 1');
 
         const totalMonths =
           (end.getFullYear() - start.getFullYear()) * 12 +

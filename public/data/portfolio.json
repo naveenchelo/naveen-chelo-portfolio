@@ -8,7 +8,8 @@
     "linkedin": "https://www.linkedin.com/in/naveen-chelo-12b64816b/",
     "github": "https://github.com/naveenchelo",
     "profileImage": "images/naveen-profile.jpg",
-    "summary": "Frontend Developer with 3 years of experience at Tata Consultancy Services, specializing in building responsive and scalable web applications using Angular (v17+), TypeScript, and NgRx. Proficient in micro front-end architecture, state management, and reusable UI component library development. Known for writing clean, maintainable code, optimizing performance, and collaborating closely with cross-functional teams to deliver high-quality user experiences."
+    "summary": "Frontend Developer with 3 years of experience at Tata Consultancy Services, specializing in building responsive and scalable web applications using Angular (v17+), TypeScript, and NgRx. Proficient in micro front-end architecture, state management, and reusable UI component library development. Known for writing clean, maintainable code, optimizing performance, and collaborating closely with cross-functional teams to deliver high-quality user experiences.",
+    "aboutMe": "I'm a frontend developer based in Bengaluru with a strong focus on building modern, scalable web applications using Angular. I enjoy creating responsive user interfaces, implementing clean state management with NgRx, and working with micro frontend architectures using Native Federation. I’ve worked on enterprise-grade apps in the finance and healthcare domains, where I contributed to everything from reusable UI components to performance optimization. I’m always curious about how things work under the hood and love refining both the developer experience and the end-user experience. When I’m not coding, I’m either exploring new frontend trends, fine-tuning my personal projects, or helping others in the dev community."
   },
   "skills": {
     "languages": ["TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Sass"],
@@ -43,11 +44,15 @@
       "position": "Software Developer",
       "company": "Tata Consultancy Services Pvt Ltd",
       "duration": "Mar 2022 – Present",
+      "startDate": "2022-03-01",
+      "endDate": null,
       "location": "Bengaluru, India",
       "clients": [
         {
           "name": "NEST UK",
           "period": "Aug 2023 – Present",
+          "startDate": "2023-08-01",
+          "endDate": null,
           "description": "Large-scale pension management platform",
           "achievements": [
             "Led design and development of critical modules for a large-scale pension management platform using Angular 17, NgRx, and Native Federation, ensuring adherence to coding standards and best practices",
@@ -63,6 +68,8 @@
         {
           "name": "CVS Pharmacy",
           "period": "Mar 2022 – Jul 2023",
+          "startDate": "2022-03-01",
+          "endDate": "2023-07-31",
           "description": "Customer-facing pharmacy portal",
           "achievements": [
             "Developed and implemented key user experience (UX) and UI requirements for a customer-facing pharmacy portal, building reusable Angular components, directives, and services",

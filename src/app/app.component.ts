@@ -10,6 +10,7 @@ export class AppComponent {
   isDarkMode = false;
   isMenuOpen = false;
   isScrolled = false;
+  currentYear: number = new Date().getFullYear();
 
   constructor(private portfolioSandbox: PortfolioSandbox) {}
 
