@@ -52,6 +52,15 @@
       </div>
 
       <div class="contact-form" data-aos="fade-left">
+        <!-- Success/Error Message Display -->
+        <div
+          *ngIf="submitMessage"
+          class="alert"
+          [ngClass]="'alert-' + submitMessageType"
+        >
+          {{ submitMessage }}
+        </div>
+
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <input
@@ -60,6 +69,9 @@
               formControlName="name"
               [class.error]="isFieldInvalid('name')"
             />
+            <div *ngIf="isFieldInvalid('name')" class="error-message">
+              Name is required and must be at least 2 characters long
+            </div>
           </div>
 
           <div class="form-group">
@@ -69,6 +81,9 @@
               formControlName="email"
               [class.error]="isFieldInvalid('email')"
             />
+            <div *ngIf="isFieldInvalid('email')" class="error-message">
+              Please enter a valid email address
+            </div>
           </div>
 
           <div class="form-group">
@@ -78,6 +93,9 @@
               formControlName="subject"
               [class.error]="isFieldInvalid('subject')"
             />
+            <div *ngIf="isFieldInvalid('subject')" class="error-message">
+              Subject is required and must be at least 5 characters long
+            </div>
           </div>
 
           <div class="form-group">
@@ -85,7 +103,11 @@
               placeholder="Your Message"
               formControlName="message"
               [class.error]="isFieldInvalid('message')"
+              rows="5"
             ></textarea>
+            <div *ngIf="isFieldInvalid('message')" class="error-message">
+              Message is required and must be at least 10 characters long
+            </div>
           </div>
 
           <button
@@ -94,7 +116,9 @@
             [disabled]="contactForm.invalid || isSubmitting"
           >
             <span *ngIf="!isSubmitting">Send Message</span>
-            <span *ngIf="isSubmitting">Sending...</span>
+            <span *ngIf="isSubmitting">
+              <i class="fas fa-spinner fa-spin"></i> Sending...
+            </span>
           </button>
         </form>
       </div>
