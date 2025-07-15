@@ -38,9 +38,7 @@ export class PortfolioSandbox {
   }
 
   //PersonalInfo with dynamic summary
-  public get enhancedPersonalInfo$(): Observable<
-    PersonalInfoInterface | undefined
-  > {
+  public get myPersonalInfo$(): Observable<PersonalInfoInterface | undefined> {
     return combineLatest([this.personalInfo$, this.totalExperience$]).pipe(
       map(([personalInfo, totalExperience]) => {
         if (!personalInfo) return personalInfo;

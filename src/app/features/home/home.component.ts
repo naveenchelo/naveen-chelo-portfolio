@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   totalExperience$!: Observable<string>;
 
   constructor(private portfolioSandbox: PortfolioSandbox) {
-    this.personalInfo$ = this.portfolioSandbox.personalInfo$;
+    this.personalInfo$ = this.portfolioSandbox.myPersonalInfo$;
     this.totalExperience$ = this.portfolioSandbox.totalExperience$;
   }
 

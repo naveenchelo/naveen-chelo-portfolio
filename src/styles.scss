@@ -292,11 +292,9 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(
-    135deg,
-    var(--background-color) 0%,
-    rgba(25, 118, 210, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--background-color) 0%,
+      rgba(25, 118, 210, 0.05) 100%);
 }
 
 .hero-content {
@@ -403,6 +401,7 @@ body {
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -410,9 +409,11 @@ body {
   100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-10px);
   }
+
   60% {
     transform: translateY(-5px);
   }

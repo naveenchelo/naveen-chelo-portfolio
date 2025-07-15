@@ -19,7 +19,7 @@ export class AboutComponent {
   currentClient$!: Observable<string>;
 
   constructor(private portfolioSandbox: PortfolioSandbox) {
-    this.personalInfo$ = this.portfolioSandbox.personalInfo$;
+    this.personalInfo$ = this.portfolioSandbox.myPersonalInfo$;
     this.education$ = this.portfolioSandbox.education$;
     this.totalExperience$ = this.portfolioSandbox.totalExperience$;
     this.totalProjects$ = this.portfolioSandbox.totalProjects$;
