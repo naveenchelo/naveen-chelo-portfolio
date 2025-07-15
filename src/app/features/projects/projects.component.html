@@ -9,9 +9,6 @@
       <button class="filter-btn active" (click)="filterProjects('all')">
         All
       </button>
-      <button class="filter-btn" (click)="filterProjects('featured')">
-        Featured
-      </button>
     </div>
 
     <div class="projects-grid" *ngIf="projects$ | async as projects">
