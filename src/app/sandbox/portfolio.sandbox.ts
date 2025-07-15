@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { filter, map, Observable } from 'rxjs';
+import { filter, map, Observable, of } from 'rxjs';
 import {
   EducationInterface,
   ExperienceInterface,
@@ -80,33 +80,19 @@ export class PortfolioSandbox {
     return this.projects$.pipe(map((projects) => projects?.length || 0));
   }
 
-  public get totalExperience$(): Observable<string> {
-    return this.experience$.pipe(
-      map((experience) => {
-        if (!experience || experience.length === 0) return '0 years';
-
-        const totalMonths = experience.reduce((acc, exp) => {
-          const start = new Date(exp.startDate);
-          const end = exp.endDate ? new Date(exp.endDate) : new Date();
-          const months =
-            (end.getFullYear() - start.getFullYear()) * 12 +
-            (end.getMonth() - start.getMonth());
-          return acc + months;
-        }, 0);
-
-        const years = Math.floor(totalMonths / 12);
-        const remainderMonths = totalMonths % 12;
-
-        if (years >= 3) {
-          return '3+ years'; // based on resume
-        }
-
-        return remainderMonths === 0
-          ? `${years} year${years > 1 ? 's' : ''}`
-          : `${years} year${years > 1 ? 's' : ''} ${remainderMonths} month${
-              remainderMonths > 1 ? 's' : ''
-            }`;
-      })
-    );
-  }
+  public totalExperience$: Observable<string> = (
+    this.experience$ ?? of([])
+  ).pipe(
+    map((experience) => {
+      if (!experience || experience.length === 0) return '0 years';
+      const totalYears = experience.reduce((acc, exp) => {
+        const startYear = new Date(exp.startDate).getFullYear();
+        const endYear = exp.endDate
+          ? new Date(exp.endDate).getFullYear()
+          : new Date().getFullYear();
+        return acc + (endYear - startYear);
+      }, 0);
+      return `${totalYears}+ year${totalYears > 1 ? 's' : ''}`;
+    })
+  );
 }
