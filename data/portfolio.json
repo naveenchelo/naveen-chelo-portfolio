@@ -49,7 +49,7 @@
       "location": "Bengaluru, India",
       "clients": [
         {
-          "name": "NEST UK",
+          "name": "Pension Management Platform",
           "period": "Aug 2023 – Present",
           "startDate": "2023-08-01",
           "endDate": null,
@@ -66,7 +66,7 @@
           ]
         },
         {
-          "name": "CVS Pharmacy",
+          "name": "Healthcare Customer Portal",
           "period": "Mar 2022 – Jul 2023",
           "startDate": "2022-03-01",
           "endDate": "2023-07-31",
@@ -84,7 +84,7 @@
   "projects": [
     {
       "id": 1,
-      "title": "NEST UK Pension Management Platform",
+      "title": "Pension Management Platform",
       "description": "Critical modules for a large-scale pension management platform serving millions of users across the UK.",
       "longDescription": "As part of the NEST UK team, I contributed to building and maintaining critical modules for one of the UK's largest pension management platforms. The project involved complex state management, micro-frontend architecture, and seamless integration with multiple backend services. The platform handles sensitive financial data and requires high performance, security, and scalability.",
       "technologies": [
@@ -99,7 +99,7 @@
       ],
       "githubUrl": "",
       "liveUrl": "https://www.nestpensions.org.uk",
-      "image": "images/nest-pension-project.svg",
+      "image": "images/tcs.png",
       "featured": true,
       "status": "Production",
       "highlights": [
@@ -111,7 +111,7 @@
     },
     {
       "id": 2,
-      "title": "CVS Pharmacy Customer Portal",
+      "title": "Healthcare Customer Portal",
       "description": "Customer-facing pharmacy portal with comprehensive UX/UI features for prescription management and healthcare services.",
       "longDescription": "Developed key components for CVS Pharmacy's customer portal, focusing on user experience and seamless integration with multiple healthcare APIs. The project involved creating reusable Angular components, implementing responsive design principles, and ensuring HIPAA compliance for healthcare data handling.",
       "technologies": [
@@ -125,7 +125,7 @@
       ],
       "githubUrl": "",
       "liveUrl": "https://www.cvshealth.com/",
-      "image": "images/cvs-pharmacy-project.svg",
+      "image": "images/tcs.png",
       "featured": true,
       "status": "Production",
       "highlights": [
