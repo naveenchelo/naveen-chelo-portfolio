@@ -4,27 +4,55 @@ on:
   push:
     branches: [main, release]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: 🏁 Start Deployment Workflow
+        run: echo "🚀 Starting GitHub Pages Deployment Workflow..."
 
-      - name: Setup Node.js
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🟩 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: 📦 Install Dependencies
+        run: |
+          echo "::group::Installing npm dependencies"
+          npm ci
+          echo "::endgroup::"
 
-      - name: Build Angular App
-        run: npm run build:prod
+      - name: 🛠️ Build Angular App
+        run: |
+          echo "::group::Building Angular app with production config"
+          npm run build:prod
+          echo "Build output:"
+          ls -la ./dist/naveen-chelo-portfolio/browser
+          echo "::endgroup::"
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/naveen-chelo-portfolio/browser
+      - name: 🧰 Install angular-cli-ghpages
+        run: |
+          echo "::group::Installing angular-cli-ghpages globally"
+          npm install -g angular-cli-ghpages
+          echo "::endgroup::"
+
+      - name: 🚚 Deploy to GitHub Pages
+        run: |
+          echo "::group::Deploying to GitHub Pages"
+          npx angular-cli-ghpages --dir=dist/naveen-chelo-portfolio/browser
+          echo "::endgroup::"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✅ Deployment Complete
+        run: echo "🎉 Deployment to GitHub Pages finished successfully!"
