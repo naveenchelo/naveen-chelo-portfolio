@@ -12,9 +12,6 @@
       <button class="filter-btn" (click)="filterProjects('featured')">
         Featured
       </button>
-      <button class="filter-btn" (click)="filterProjects('production')">
-        Production
-      </button>
     </div>
 
     <div class="projects-grid" *ngIf="projects$ | async as projects">

@@ -8,6 +8,7 @@ export interface PersonalInfoInterface {
   github: string;
   summary: string;
   profileImage?: string;
+  aboutMe: string;
 }
 
 export interface SkillsInterface {
@@ -53,6 +54,34 @@ export interface EducationInterface {
   year: string;
 }
 
+export interface ThemeInterface {
+  primaryColor: string;
+  secondaryColor: string;
+  accentColor: string;
+  backgroundColor: string;
+  textColor: string;
+  darkMode: {
+    enabled: boolean;
+    primaryColor: string;
+    backgroundColor: string;
+    textColor: string;
+  };
+}
+
+export interface SeoMetaInterface {
+  title: string;
+  description: string;
+  keywords: string;
+  author: string;
+  ogImage: string;
+}
+
+export interface SocialLinkInterface {
+  platform: string;
+  url: string;
+  icon: string;
+}
+
 export interface PortfolioInterface {
   personalInfo: PersonalInfoInterface;
   skills: SkillsInterface;
@@ -60,4 +89,7 @@ export interface PortfolioInterface {
   projects: ProjectInterface[];
   education: EducationInterface;
   certifications: string[];
+  socialLinks?: SocialLinkInterface[];
+  theme?: ThemeInterface;
+  seoMeta?: SeoMetaInterface;
 }
