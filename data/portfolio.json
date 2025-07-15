@@ -1,0 +1,287 @@
+{
+  "personalInfo": {
+    "name": "Naveen Chelo",
+    "title": "Frontend Developer",
+    "location": "Bengaluru, India",
+    "email": "chelonaveen07@gmail.com",
+    "phone": "8328681356",
+    "linkedin": "https://www.linkedin.com/in/naveen-chelo-12b64816b/",
+    "github": "https://github.com/naveenchelo",
+    "profileImage": "images/naveen-profile.jpg",
+    "summary": "Frontend Developer with 3 years of experience at Tata Consultancy Services, specializing in building responsive and scalable web applications using Angular (v17+), TypeScript, and NgRx. Proficient in micro front-end architecture, state management, and reusable UI component library development. Known for writing clean, maintainable code, optimizing performance, and collaborating closely with cross-functional teams to deliver high-quality user experiences.",
+    "aboutMe": "I'm a frontend developer based in Bengaluru with a strong focus on building modern, scalable web applications using Angular. I enjoy creating responsive user interfaces, implementing clean state management with NgRx, and working with micro frontend architectures using Native Federation. I’ve worked on enterprise-grade apps in the finance and healthcare domains, where I contributed to everything from reusable UI components to performance optimization. I’m always curious about how things work under the hood and love refining both the developer experience and the end-user experience. When I’m not coding, I’m either exploring new frontend trends, fine-tuning my personal projects, or helping others in the dev community."
+  },
+  "skills": {
+    "languages": ["TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Sass"],
+    "frameworks": [
+      "Angular (v17+)",
+      "NgRx",
+      "RxJS",
+      "Angular Material",
+      "Native Federation"
+    ],
+    "tools": [
+      "Git",
+      "VS Code",
+      "Figma",
+      "REST API Integration",
+      "JIRA",
+      "CI/CD Pipelines"
+    ],
+    "concepts": [
+      "Micro Front-end Architecture",
+      "Module Federation",
+      "Responsive Web Design (RWD)",
+      "State Management",
+      "Agile Methodologies",
+      "UI/UX Principles",
+      "Performance Optimization"
+    ]
+  },
+  "experience": [
+    {
+      "id": 1,
+      "position": "Software Developer",
+      "company": "Tata Consultancy Services Pvt Ltd",
+      "duration": "Mar 2022 – Present",
+      "startDate": "2022-03-01",
+      "endDate": null,
+      "location": "Bengaluru, India",
+      "clients": [
+        {
+          "name": "NEST UK",
+          "period": "Aug 2023 – Present",
+          "startDate": "2023-08-01",
+          "endDate": null,
+          "description": "Large-scale pension management platform",
+          "achievements": [
+            "Led design and development of critical modules for a large-scale pension management platform using Angular 17, NgRx, and Native Federation, ensuring adherence to coding standards and best practices",
+            "Engineered shell and module connections within a micro front-end architecture, enabling seamless integration of distinct Angular microservices and improving modular deployment capabilities",
+            "Implemented robust NgRx state management (stores, reducers, actions, effects), optimizing data handling and reducing API call frequency, enhancing UI responsiveness",
+            "Developed and maintained a reusable UI component library with Angular Material and Sass, leading to a significant decrease in frontend development time for new features",
+            "Ensured optimal responsive design (CSS Grid, Flexbox) with high fidelity to Figma mockups, collaborating closely with UX designers to resolve UI inconsistencies",
+            "Mentored junior developers in Angular best practices and conducted KT sessions, improving team code quality and accelerating new member onboarding",
+            "Optimized application performance by identifying and refactoring critical bottlenecks, significantly improving scalability and maintainability",
+            "Gained practical experience with AWS backend services and contributed to the understanding and implementation of CI/CD pipelines for application deployment"
+          ]
+        },
+        {
+          "name": "CVS Pharmacy",
+          "period": "Mar 2022 – Jul 2023",
+          "startDate": "2022-03-01",
+          "endDate": "2023-07-31",
+          "description": "Customer-facing pharmacy portal",
+          "achievements": [
+            "Developed and implemented key user experience (UX) and UI requirements for a customer-facing pharmacy portal, building reusable Angular components, directives, and services",
+            "Engineered services for seamless data integration from multiple REST APIs, efficiently handled bug fixes, and managed deployments to staging, ensuring application stability",
+            "Collaborated closely with Team Leads and Business Analysts to meticulously define requirements, contributing to a notable reduction in development errors and rework",
+            "Actively participated in UI design discussions and implementation, enhancing team technical skills through shared learning sessions and promoting user-centric design"
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "NEST UK Pension Management Platform",
+      "description": "Critical modules for a large-scale pension management platform serving millions of users across the UK.",
+      "longDescription": "As part of the NEST UK team, I contributed to building and maintaining critical modules for one of the UK's largest pension management platforms. The project involved complex state management, micro-frontend architecture, and seamless integration with multiple backend services. The platform handles sensitive financial data and requires high performance, security, and scalability.",
+      "technologies": [
+        "Angular 17",
+        "NgRx",
+        "Native Federation",
+        "TypeScript",
+        "Angular Material",
+        "Sass",
+        "REST APIs",
+        "AWS Services"
+      ],
+      "githubUrl": "",
+      "liveUrl": "https://www.nestpensions.org.uk",
+      "image": "images/nest-pension-project.svg",
+      "featured": true,
+      "status": "Production",
+      "highlights": [
+        "Micro-frontend architecture implementation",
+        "NgRx state management optimization",
+        "Performance optimization and scalability",
+        "Reusable UI component library development"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "CVS Pharmacy Customer Portal",
+      "description": "Customer-facing pharmacy portal with comprehensive UX/UI features for prescription management and healthcare services.",
+      "longDescription": "Developed key components for CVS Pharmacy's customer portal, focusing on user experience and seamless integration with multiple healthcare APIs. The project involved creating reusable Angular components, implementing responsive design principles, and ensuring HIPAA compliance for healthcare data handling.",
+      "technologies": [
+        "Angular",
+        "TypeScript",
+        "RxJS",
+        "Angular Material",
+        "CSS3",
+        "REST APIs",
+        "Healthcare APIs"
+      ],
+      "githubUrl": "",
+      "liveUrl": "https://www.cvshealth.com/",
+      "image": "images/cvs-pharmacy-project.svg",
+      "featured": true,
+      "status": "Production",
+      "highlights": [
+        "Healthcare-compliant UI components",
+        "Multi-API integration architecture",
+        "Responsive design implementation",
+        "User-centric design approach"
+      ]
+    }
+  ],
+  "education": {
+    "degree": "B.Tech in Civil Engineering",
+    "institution": "Sree Vidyanikethan Engineering College",
+    "location": "Tirupati, Andhra Pradesh, India",
+    "year": "2016 – 2020",
+    "gpa": "6.9/10"
+  },
+  "certifications": [
+    {
+      "name": "Introduction to Angular",
+      "issuer": "Udemy",
+      "date": "2021",
+      "credentialId": "UC-angular-intro-2021"
+    },
+    {
+      "name": "JavaScript Fundamentals",
+      "issuer": "Udemy",
+      "date": "2021",
+      "credentialId": "UC-js-fundamentals-2021"
+    },
+    {
+      "name": "TypeScript Essentials",
+      "issuer": "Udemy",
+      "date": "2021",
+      "credentialId": "UC-ts-essentials-2021"
+    },
+    {
+      "name": "Advanced Angular Development",
+      "issuer": "Udemy",
+      "date": "2022",
+      "credentialId": "UC-advanced-angular-2022"
+    },
+    {
+      "name": "NgRx State Management",
+      "issuer": "Udemy",
+      "date": "2022",
+      "credentialId": "UC-ngrx-state-2022"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Best Performer Award",
+      "organization": "Tata Consultancy Services",
+      "date": "2023",
+      "description": "Recognized for exceptional performance in Angular development and team collaboration"
+    },
+    {
+      "title": "Innovation Award",
+      "organization": "TCS - NEST UK Project",
+      "date": "2023",
+      "description": "Awarded for implementing innovative micro-frontend architecture solutions"
+    },
+    {
+      "title": "Mentor of the Year",
+      "organization": "TCS Development Team",
+      "date": "2024",
+      "description": "Recognized for mentoring junior developers and conducting knowledge transfer sessions"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Team Lead",
+      "company": "TCS - NEST UK",
+      "text": "Naveen consistently delivers high-quality Angular solutions and has been instrumental in our micro-frontend architecture implementation.",
+      "rating": 5
+    },
+    {
+      "name": "Senior Developer",
+      "company": "TCS - CVS Pharmacy",
+      "text": "Excellent collaboration skills and deep understanding of Angular best practices. A valuable team member.",
+      "rating": 5
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/naveen-chelo",
+      "icon": "linkedin"
+    },
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/naveenchelo",
+      "icon": "github"
+    },
+    {
+      "platform": "Email",
+      "url": "mailto:chelonaveen07@gmail.com",
+      "icon": "email"
+    },
+    {
+      "platform": "Phone",
+      "url": "tel:+918328681356",
+      "icon": "phone"
+    }
+  ],
+  "seoMeta": {
+    "title": "Naveen Chelo - Frontend Developer | Angular Specialist",
+    "description": "Experienced Frontend Developer specializing in Angular, NgRx, and modern web technologies. 3+ years at TCS building scalable web applications.",
+    "keywords": "Angular Developer, Frontend Developer, NgRx, TypeScript, JavaScript, Micro Frontend, TCS, Bengaluru",
+    "author": "Naveen Chelo",
+    "ogImage": "assets/images/naveen-og-image.jpg"
+  },
+  "contactForm": {
+    "enabled": true,
+    "fields": [
+      {
+        "name": "name",
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "placeholder": "Enter your full name"
+      },
+      {
+        "name": "email",
+        "label": "Email Address",
+        "type": "email",
+        "required": true,
+        "placeholder": "Enter your email address"
+      },
+      {
+        "name": "subject",
+        "label": "Subject",
+        "type": "text",
+        "required": true,
+        "placeholder": "Enter the subject"
+      },
+      {
+        "name": "message",
+        "label": "Message",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Enter your message"
+      }
+    ]
+  },
+  "theme": {
+    "primaryColor": "#1976d2",
+    "secondaryColor": "#424242",
+    "accentColor": "#ff4081",
+    "backgroundColor": "#fafafa",
+    "textColor": "#333333",
+    "darkMode": {
+      "enabled": true,
+      "primaryColor": "#2196f3",
+      "backgroundColor": "#121212",
+      "textColor": "#ffffff"
+    }
+  }
+}
