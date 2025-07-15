@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { filter, map, Observable, of } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { combineLatest, filter, map, Observable, of, timer } from 'rxjs';
 import {
   EducationInterface,
   ExperienceInterface,
@@ -13,11 +13,9 @@ import { AppState } from '../store/state/app.state';
 import * as PortfolioSelectors from '../store/selectors/portfolio.selectors';
 import * as PortfolioActions from '../store/actions/portfolio.actions';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class PortfolioSandbox {
-  constructor(private store: Store<AppState>) {}
+  private store = inject(Store<AppState>);
 
   // Main data selectors
   public get portfolioData$(): Observable<PortfolioInterface | null> {
@@ -77,17 +75,24 @@ export class PortfolioSandbox {
     );
   }
 
+  // Recalculate every time it's accessed with current date
   public readonly totalExperience$: Observable<string> = this.experience$.pipe(
     map((experience) => {
       if (!experience || experience.length === 0) return '0 years';
 
+      const currentDate = new Date();
+
       const totalMonths = experience.reduce((acc, exp) => {
         const start = new Date(exp.startDate);
-        const end = exp.endDate ? new Date(exp.endDate) : new Date();
+        const end = exp.endDate ? new Date(exp.endDate) : currentDate;
+
+        // Calculate months between start and end dates
         const months =
           (end.getFullYear() - start.getFullYear()) * 12 +
-          (end.getMonth() - start.getMonth());
-        return acc + months;
+          (end.getMonth() - start.getMonth()) +
+          (end.getDate() >= start.getDate() ? 0 : -1);
+
+        return acc + Math.max(0, months);
       }, 0);
 
       const years = Math.floor(totalMonths / 12);
@@ -97,6 +102,12 @@ export class PortfolioSandbox {
         return '3+ years';
       }
 
+      if (years === 0) {
+        return remainderMonths === 0
+          ? '0 months'
+          : `${remainderMonths} month${remainderMonths > 1 ? 's' : ''}`;
+      }
+
       return remainderMonths === 0
         ? `${years} year${years > 1 ? 's' : ''}`
         : `${years} year${years > 1 ? 's' : ''} ${remainderMonths} month${
@@ -104,6 +115,82 @@ export class PortfolioSandbox {
           }`;
     })
   );
+
+  //Experience calculation that updates every minute
+  public readonly totalExperienceRealTime$: Observable<string> = combineLatest([
+    this.experience$,
+    timer(0, 60000), // Update every minute
+  ]).pipe(
+    map(([experience]) => {
+      if (!experience || experience.length === 0) return '0 years';
+
+      const currentDate = new Date();
+
+      const totalMonths = experience.reduce((acc, exp) => {
+        const start = new Date(exp.startDate);
+        const end = exp.endDate ? new Date(exp.endDate) : currentDate;
+
+        const months =
+          (end.getFullYear() - start.getFullYear()) * 12 +
+          (end.getMonth() - start.getMonth()) +
+          (end.getDate() >= start.getDate() ? 0 : -1);
+
+        return acc + Math.max(0, months);
+      }, 0);
+
+      const years = Math.floor(totalMonths / 12);
+      const remainderMonths = totalMonths % 12;
+
+      if (years >= 3) {
+        return '3+ years';
+      }
+
+      if (years === 0) {
+        return remainderMonths === 0
+          ? '0 months'
+          : `${remainderMonths} month${remainderMonths > 1 ? 's' : ''}`;
+      }
+
+      return remainderMonths === 0
+        ? `${years} year${years > 1 ? 's' : ''}`
+        : `${years} year${years > 1 ? 's' : ''} ${remainderMonths} month${
+            remainderMonths > 1 ? 's' : ''
+          }`;
+    })
+  );
+
+  // Get current experience duration for specific position
+  public getCurrentExperienceDuration$(): Observable<string> {
+    return this.experience$.pipe(
+      map((experience) => {
+        if (!experience || experience.length === 0) return '0 months';
+
+        const currentExp = experience[0];
+        const start = new Date(currentExp.startDate);
+        const end = currentExp.endDate
+          ? new Date(currentExp.endDate)
+          : new Date();
+
+        const totalMonths =
+          (end.getFullYear() - start.getFullYear()) * 12 +
+          (end.getMonth() - start.getMonth()) +
+          (end.getDate() >= start.getDate() ? 0 : -1);
+
+        const years = Math.floor(totalMonths / 12);
+        const remainderMonths = totalMonths % 12;
+
+        if (years === 0) {
+          return `${remainderMonths} month${remainderMonths > 1 ? 's' : ''}`;
+        }
+
+        return remainderMonths === 0
+          ? `${years} year${years > 1 ? 's' : ''}`
+          : `${years} year${years > 1 ? 's' : ''} ${remainderMonths} month${
+              remainderMonths > 1 ? 's' : ''
+            }`;
+      })
+    );
+  }
 
   public get totalProjects$(): Observable<number> {
     return this.projects$.pipe(map((projects) => projects?.length || 0));

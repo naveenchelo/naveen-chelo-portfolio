@@ -1,1 +1,64 @@
-<h2>HEllo</h2>
+<div class="app-container" [attr.data-theme]="isDarkMode ? 'dark' : 'light'">
+  <!-- Navigation Header -->
+  <header class="header" [class.scrolled]="isScrolled">
+    <nav class="nav-container">
+      <div class="logo">
+        <h2>Naveen Chelo</h2>
+      </div>
+      <ul class="nav-menu" [class.active]="isMenuOpen">
+        <li><a href="#home" (click)="scrollToSection('home')">Home</a></li>
+        <li><a href="#about" (click)="scrollToSection('about')">About</a></li>
+        <li>
+          <a href="#experience" (click)="scrollToSection('experience')"
+            >Experience</a
+          >
+        </li>
+        <li>
+          <a href="#projects" (click)="scrollToSection('projects')">Projects</a>
+        </li>
+        <li>
+          <a href="#skills" (click)="scrollToSection('skills')">Skills</a>
+        </li>
+        <li>
+          <a href="#contact" (click)="scrollToSection('contact')">Contact</a>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" (click)="toggleTheme()">
+          <i [class]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+        </button>
+        <button class="menu-toggle" (click)="toggleMenu()">
+          <i [class]="isMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <app-home id="home"></app-home>
+    <app-about id="about"></app-about>
+    <app-experience id="experience"></app-experience>
+    <app-projects id="projects"></app-projects>
+    <app-skills id="skills"></app-skills>
+    <app-contact id="contact"></app-contact>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2024 Naveen Chelo. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/naveen-chelo" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/naveenchelo" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:chelonaveen07@gmail.com">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
