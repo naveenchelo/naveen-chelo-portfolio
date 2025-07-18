@@ -21,15 +21,585 @@
   --gradient-accent: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
 }
 
+// Enhanced Dark Mode Color Palette - Purple/Violet Theme
 [data-theme="dark"] {
-  --primary-color: #2196f3;
-  --secondary-color: #757575;
-  --accent-color: #ff4081;
-  --background-color: #121212;
-  --text-color: #ffffff;
-  --card-background: #1e1e1e;
-  --border-color: #333333;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  // Primary Colors
+  --primary-color: #a855f7; // Bright purple for better visibility
+  --secondary-color: #cbd5e1; // Lighter cool gray
+  --accent-color: #f472b6; // Pink accent
+
+  // Background Colors
+  --background-color: #111827; // Lighter dark background
+  --card-background: #1f2937; // Lighter card background
+  --surface-color: #374151; // Lighter surface
+
+  // Text Colors
+  --text-color: #f9fafb; // Almost white text
+  --text-secondary: #e5e7eb; // Very light secondary text
+  --text-muted: #d1d5db; // Light muted text
+
+  // Border & Dividers
+  --border-color: #4b5563; // More visible borders
+  --divider-color: #6b7280; // Visible dividers
+
+  // Shadows & Effects
+  --shadow: 0 4px 25px rgba(168, 85, 247, 0.15);
+  --shadow-intense: 0 8px 40px rgba(168, 85, 247, 0.25);
+
+  // Gradients
+  --gradient-primary: linear-gradient(135deg,
+      #a855f7 0%,
+      #9333ea 50%,
+      #7c3aed 100%);
+  --gradient-secondary: linear-gradient(135deg,
+      #f472b6 0%,
+      #ec4899 50%,
+      #db2777 100%);
+  --gradient-accent: linear-gradient(135deg,
+      #06b6d4 0%,
+      #0891b2 50%,
+      #0e7490 100%);
+  --gradient-bg: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+
+  // Status Colors - Brighter for better visibility
+  --success-color: #34d399; // Brighter green
+  --warning-color: #fbbf24; // Brighter yellow
+  --error-color: #f87171; // Brighter red
+  --info-color: #60a5fa; // Brighter blue
+
+  // Interactive States
+  --hover-overlay: rgba(168, 85, 247, 0.1);
+  --active-overlay: rgba(168, 85, 247, 0.2);
+  --focus-ring: rgba(168, 85, 247, 0.5);
+}
+
+// Alternative Dark Mode - Teal/Emerald Theme
+[data-theme="dark-teal"] {
+  --primary-color: #14b8a6;
+  --secondary-color: #94a3b8;
+  --accent-color: #f59e0b;
+  --background-color: #0c1117;
+  --card-background: #1f2937;
+  --text-color: #f1f5f9;
+  --border-color: #374151;
+  --shadow: 0 4px 25px rgba(20, 184, 166, 0.15);
+  --gradient-primary: linear-gradient(135deg,
+      #14b8a6 0%,
+      #0d9488 50%,
+      #0f766e 100%);
+  --gradient-secondary: linear-gradient(135deg,
+      #f59e0b 0%,
+      #d97706 50%,
+      #b45309 100%);
+}
+
+// Alternative Dark Mode - Orange/Red Theme
+[data-theme="dark-warm"] {
+  --primary-color: #f97316;
+  --secondary-color: #94a3b8;
+  --accent-color: #ef4444;
+  --background-color: #1c1917;
+  --card-background: #292524;
+  --text-color: #fafaf9;
+  --border-color: #44403c;
+  --shadow: 0 4px 25px rgba(249, 115, 22, 0.15);
+  --gradient-primary: linear-gradient(135deg,
+      #f97316 0%,
+      #ea580c 50%,
+      #dc2626 100%);
+  --gradient-secondary: linear-gradient(135deg,
+      #ef4444 0%,
+      #dc2626 50%,
+      #b91c1c 100%);
+}
+
+// Enhanced Dark Mode Specific Styles
+[data-theme="dark"] {
+
+  // Body and General
+  body {
+    background: var(--gradient-bg);
+    color: var(--text-color);
+  }
+
+  // Header Enhancements
+  .header {
+    background: rgba(31, 41, 55, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+
+    &.scrolled {
+      background: rgba(31, 41, 55, 0.98);
+      box-shadow: var(--shadow);
+    }
+  }
+
+  // Logo text - ensure high visibility
+  .logo h2 {
+    color: var(--text-color) !important;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  // Navigation
+  .nav-menu a {
+    color: var(--text-color) !important;
+
+    &:hover {
+      color: var(--primary-color) !important;
+    }
+
+    &::after {
+      background: var(--gradient-primary);
+    }
+  }
+
+  // Hero section text visibility
+  .hero-text {
+    .hero-title {
+      color: var(--text-color) !important;
+
+      .highlight {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    .hero-subtitle {
+      color: var(--text-secondary) !important;
+    }
+
+    .hero-description {
+      color: var(--text-color) !important;
+    }
+  }
+
+  // Section titles and text
+  .section-title {
+    color: var(--text-color) !important;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    color: var(--text-secondary) !important;
+  }
+
+  // All headings
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-color) !important;
+  }
+
+  // All paragraphs and text
+  p,
+  span,
+  div {
+    color: var(--text-color) !important;
+  }
+
+  // Specific text elements
+  .about-description,
+  .project-description,
+  .client-description,
+  .experience-description {
+    color: var(--text-color) !important;
+  }
+
+  // Theme Toggle Button
+  .theme-toggle {
+    background: var(--surface-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+
+    &:hover {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+  }
+
+  // Cards and Surfaces
+  .card,
+  .project-card,
+  .skill-category,
+  .experience-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+
+    &:hover {
+      box-shadow: var(--shadow-intense);
+      border-color: var(--primary-color);
+    }
+  }
+
+  // Buttons
+  .btn {
+    &.btn-primary {
+      background: var(--gradient-primary);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+
+      &:hover {
+        box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4);
+      }
+    }
+
+    &.btn-outline {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+
+      &:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+    }
+  }
+
+  // Form Elements - Better visibility
+  .form-group {
+    label {
+      color: var(--text-color) !important;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    input,
+    textarea {
+      background: var(--surface-color) !important;
+      border: 2px solid var(--border-color) !important;
+      color: var(--text-color) !important;
+
+      &:focus {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 3px var(--focus-ring) !important;
+      }
+
+      &::placeholder {
+        color: var(--text-muted) !important;
+      }
+
+      &.error {
+        border-color: var(--error-color) !important;
+        box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2) !important;
+      }
+    }
+  }
+
+  // Contact form specific
+  .contact-form {
+    background: var(--card-background) !important;
+
+    h3 {
+      color: var(--text-color) !important;
+    }
+  }
+
+  // Contact info
+  .contact-info {
+    h3 {
+      color: var(--primary-color) !important;
+    }
+
+    .contact-item {
+      background: var(--card-background) !important;
+
+      i {
+        color: var(--primary-color) !important;
+      }
+
+      div {
+        h4 {
+          color: var(--text-color) !important;
+        }
+
+        p {
+          color: var(--text-secondary) !important;
+        }
+      }
+    }
+  }
+
+  // Project cards - Better text visibility
+  .project-card {
+    background: var(--card-background) !important;
+
+    .project-content {
+      h3 {
+        color: var(--primary-color) !important;
+      }
+
+      .project-description {
+        color: var(--text-color) !important;
+      }
+
+      .project-highlights {
+        h4 {
+          color: var(--text-color) !important;
+        }
+
+        ul li {
+          color: var(--text-color) !important;
+        }
+      }
+    }
+  }
+
+  // Experience cards
+  .experience-card {
+    background: var(--card-background) !important;
+
+    .experience-header {
+      h3 {
+        color: var(--primary-color) !important;
+      }
+
+      h4 {
+        color: var(--text-color) !important;
+      }
+
+      .location {
+        color: var(--text-secondary) !important;
+      }
+    }
+
+    .clients-section {
+      .client-item {
+        background: var(--surface-color) !important;
+
+        h5 {
+          color: var(--primary-color) !important;
+        }
+
+        .client-period {
+          color: var(--text-secondary) !important;
+        }
+
+        .client-description {
+          color: var(--text-color) !important;
+        }
+
+        .achievements {
+          h6 {
+            color: var(--text-color) !important;
+          }
+
+          ul li {
+            color: var(--text-color) !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Skills section
+  .skill-category {
+    background: var(--card-background) !important;
+
+    h3 {
+      color: var(--primary-color) !important;
+    }
+  }
+
+  // About section
+  .about-details {
+    .detail-card {
+      background: var(--card-background) !important;
+
+      h3 {
+        color: var(--primary-color) !important;
+      }
+
+      .info-item {
+        i {
+          color: var(--primary-color) !important;
+        }
+
+        span {
+          color: var(--text-color) !important;
+        }
+      }
+
+      .education-info {
+        h4 {
+          color: var(--text-color) !important;
+        }
+
+        p {
+          color: var(--text-secondary) !important;
+        }
+      }
+    }
+  }
+
+  // Stats
+  .stat-item {
+    background: var(--card-background) !important;
+
+    h3 {
+      color: var(--primary-color) !important;
+    }
+
+    p {
+      color: var(--text-secondary) !important;
+    }
+  }
+
+  // Skill Tags
+  .skill-tag,
+  .tech-tag {
+    background: var(--gradient-primary);
+    color: white;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+  }
+
+  // Timeline
+  .experience-timeline {
+    &::before {
+      background: var(--gradient-primary);
+    }
+
+    .timeline-item::after {
+      background: var(--primary-color);
+      box-shadow: 0 0 0 4px var(--card-background);
+    }
+  }
+
+  // Footer - Fixed visibility
+  .footer {
+    background: var(--card-background) !important;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color) !important;
+
+    .footer-content {
+      color: var(--text-color) !important;
+
+      p,
+      span,
+      div {
+        color: var(--text-color) !important;
+      }
+    }
+
+    .social-links a {
+      color: var(--text-color) !important;
+      background: var(--surface-color);
+
+      &:hover {
+        background: var(--primary-color) !important;
+        color: white !important;
+      }
+    }
+  }
+
+  // Alerts - Fixed visibility for error messages
+  .alert {
+    color: var(--text-color) !important;
+    font-weight: 600 !important;
+    border-width: 2px !important;
+  }
+
+  .alert-success {
+    background: rgba(52, 211, 153, 0.2) !important;
+    color: var(--success-color) !important;
+    border: 2px solid var(--success-color) !important;
+  }
+
+  .alert-error {
+    background: rgba(248, 113, 113, 0.2) !important;
+    color: var(--error-color) !important;
+    border: 2px solid var(--error-color) !important;
+  }
+
+  .alert-warning {
+    background: rgba(251, 191, 36, 0.2) !important;
+    color: var(--warning-color) !important;
+    border: 2px solid var(--warning-color) !important;
+  }
+
+  .alert-info {
+    background: rgba(96, 165, 250, 0.2) !important;
+    color: var(--info-color) !important;
+    border: 2px solid var(--info-color) !important;
+  }
+
+  // Scrollbar Styling
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background-color);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a855f7;
+  }
+}
+
+// Smooth transitions for theme switching
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+// Theme Toggle Animation
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(139, 92, 246, 0.3),
+        transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+// Glow effects for interactive elements
+[data-theme="dark"] {
+
+  .btn:hover,
+  .project-card:hover,
+  .skill-category:hover,
+  .experience-card:hover {
+    box-shadow: 0 8px 40px rgba(139, 92, 246, 0.2);
+  }
+
+  .hero-image .image-container:hover {
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+  }
 }
 
 body {
@@ -223,7 +793,6 @@ body {
 .footer {
   background: var(--card-background);
   padding: 2rem 0;
-  margin-top: 4rem;
   border-top: 1px solid var(--border-color);
 
   .footer-content {
@@ -292,11 +861,9 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(
-    135deg,
-    var(--background-color) 0%,
-    rgba(25, 118, 210, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--background-color) 0%,
+      rgba(25, 118, 210, 0.05) 100%);
 }
 
 .hero-content {
@@ -341,10 +908,23 @@ body {
 
   .hero-actions {
     display: flex;
+    align-items: center;
     gap: 1rem;
-    flex-wrap: wrap;
+
+    .action-row-1 {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .action-row-2 {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
+
 
 .hero-image {
   display: flex;
@@ -403,6 +983,7 @@ body {
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,

@@ -9,9 +9,6 @@
       <button class="filter-btn active" (click)="filterProjects('all')">
         All
       </button>
-      <button class="filter-btn" (click)="filterProjects('featured')">
-        Featured
-      </button>
     </div>
 
     <div class="projects-grid" *ngIf="projects$ | async as projects">
@@ -31,7 +28,7 @@
                 *ngIf="project.liveUrl"
                 class="btn btn-primary"
               >
-                <i class="fas fa-external-link-alt"></i> About CVS Helath
+                <i class="fas fa-external-link-alt"></i> About
               </a>
               <a
                 [href]="project.githubUrl"
