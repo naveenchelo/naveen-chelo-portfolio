@@ -106,6 +106,7 @@
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
 
+
     .tooltip-arrow {
       position: absolute;
       left: 100%;
@@ -214,5 +215,20 @@
   .hero-actions {
     display: flex;
     justify-content: center;
+  }
+}
+
+.floating-resume-btn.bottom-right {
+  top: auto;
+  bottom: 2rem;
+  right: 2rem;
+  transform: none;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
