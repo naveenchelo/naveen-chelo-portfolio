@@ -5,3 +5,214 @@
     flex-direction: column;
   }
 }
+
+// Floating Resume Download Button
+.floating-resume-btn {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 50px;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+
+  &:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+
+    .resume-tooltip {
+      opacity: 1;
+      transform: translateX(-10px);
+    }
+  }
+
+  &.downloading {
+    cursor: not-allowed;
+
+    .resume-icon {
+      animation: pulse 1s infinite;
+    }
+  }
+
+  .resume-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    position: relative;
+
+    i {
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .download-progress {
+      position: relative;
+      width: 24px;
+      height: 24px;
+
+      .progress-circle {
+        width: 100%;
+        height: 100%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        position: relative;
+
+        .progress-fill {
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          width: 100%;
+          height: 100%;
+          border: 2px solid transparent;
+          border-top: 2px solid white;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
+    }
+  }
+
+  .resume-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .resume-tooltip {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+
+    .tooltip-arrow {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid rgba(0, 0, 0, 0.8);
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+    }
+  }
+}
+
+// Download Success Animation
+.download-success {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1001;
+  background: #4caf50;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(76, 175, 80, 0.3);
+  transform: translateX(calc(100% + 2rem));
+  transform: translateX(100%);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .success-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    i {
+      font-size: 1.2rem;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Keyframes
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .floating-resume-btn {
+    right: 1rem;
+    padding: 0.75rem 1rem;
+
+    .resume-text {
+      font-size: 0.8rem;
+    }
+
+    .resume-tooltip {
+      display: none; // Hide tooltip on mobile
+    }
+  }
+
+  .download-success {
+    right: 1rem;
+    top: 1rem;
+    transform: translateX(calc(100% + 1rem));
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 992px) {
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+  }
+}

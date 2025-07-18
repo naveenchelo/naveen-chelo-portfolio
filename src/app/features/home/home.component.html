@@ -29,4 +29,44 @@
       <i class="fas fa-chevron-down"></i>
     </div>
   </div>
+
+  <!-- Floating Resume Download Button -->
+  <div
+    class="floating-resume-btn"
+    [class.downloading]="isDownloading"
+    (click)="downloadResume()"
+  >
+    <div class="resume-icon">
+      <i class="fas fa-file-download" *ngIf="!isDownloading"></i>
+      <div class="download-progress" *ngIf="isDownloading">
+        <div class="progress-circle">
+          <div
+            class="progress-fill"
+            [style.animation-duration]="downloadDuration + 'ms'"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <span class="resume-text">
+      {{ isDownloading ? "Downloading..." : "Download CV" }}
+    </span>
+    <div class="resume-tooltip">
+      <span>Get my latest resume</span>
+      <div class="tooltip-arrow"></div>
+    </div>
+  </div>
+
+  <!-- Download Success Animation -->
+  <div class="download-success" [class.show]="showDownloadSuccess">
+    <div class="success-content">
+      <i class="fas fa-check-circle"></i>
+      <span>Resume Downloaded Successfully!</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-indicator" (click)="scrollToAbout()">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
 </section>
