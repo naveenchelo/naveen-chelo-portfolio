@@ -7,29 +7,20 @@
       <h2 class="hero-subtitle">{{ personalInfo.title }}</h2>
       <p class="hero-description">{{ personalInfo.summary }}</p>
       <div class="hero-actions">
-        <button class="btn btn-primary" (click)="scrollToProjects()">
-          View My Work
-        </button>
-        <button class="btn btn-outline" (click)="scrollToContact()">
-          Get In Touch
-        </button>
+        <div class="action-row-1">
+          <button class="btn btn-primary" (click)="scrollToProjects()">
+            View My Work
+          </button>
+          <button class="btn btn-outline" (click)="scrollToContact()">
+            Get in Touch
+          </button>
+        </div>
       </div>
     </div>
     <div class="hero-image" data-aos="fade-left">
       <div class="image-container">
         <img [src]="personalInfo.profileImage" [alt]="personalInfo.name" />
         <div class="image-overlay"></div>
-      </div>
-      <div class="resume-download" style="text-align: center; margin-top: 1rem">
-        <a
-          href="resume/naveen-angular-developer.pdf"
-          target="_blank"
-          rel="noopener"
-          download
-          class="btn btn-secondary"
-        >
-          Download Resume
-        </a>
       </div>
     </div>
   </div>

@@ -32,4 +32,18 @@ export class HomeComponent implements OnInit {
   scrollToAbout() {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   }
+
+  downloadResume() {
+    const resumeUrl = 'resume/Naveen_Chelo_Angular_Developer.pdf';
+    const fileName = 'Naveen_Chelo_Angular_Developer.pdf';
+
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = fileName;
+    link.target = '_blank';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }
