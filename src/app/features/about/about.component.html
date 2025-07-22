@@ -5,54 +5,55 @@
       <p class="section-subtitle">Get to know me better</p>
     </div>
 
-    <div class="about-content" *ngIf="personalInfo$ | async as personalInfo">
-      <div class="about-text" data-aos="fade-right">
-        <p class="about-description">{{ personalInfo.aboutMe }}</p>
-
-        <div class="about-stats">
-          <div class="stat-item">
-            <h3>{{ totalExperience$ | async }}</h3>
-            <p>Experience</p>
+    @if (personalInfo$ | async; as personalInfo) {
+      <div class="about-content">
+        <div class="about-text" data-aos="fade-right">
+          <p class="about-description">{{ personalInfo.aboutMe }}</p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <h3>{{ totalExperience$ | async }}</h3>
+              <p>Experience</p>
+            </div>
+            <div class="stat-item">
+              <h3>{{ totalProjects$ | async }}</h3>
+              <p>Projects</p>
+            </div>
+            <div class="stat-item">
+              <h3>{{ currentClient$ | async }}</h3>
+              <p>Current Client</p>
+            </div>
           </div>
-          <div class="stat-item">
-            <h3>{{ totalProjects$ | async }}</h3>
-            <p>Projects</p>
+        </div>
+        <div class="about-details" data-aos="fade-left">
+          <div class="detail-card">
+            <h3>Personal Info</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <span>{{ personalInfo.email }}</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <span>{{ personalInfo.phone }}</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ personalInfo.location }}</span>
+              </div>
+            </div>
           </div>
-          <div class="stat-item">
-            <h3>{{ currentClient$ | async }}</h3>
-            <p>Current Client</p>
-          </div>
+          @if (education$ | async; as education) {
+            <div class="detail-card">
+              <h3>Education</h3>
+              <div class="education-info">
+                <h4>{{ education.degree }}</h4>
+                <p>{{ education.institution }}</p>
+                <p>{{ education.year }}</p>
+              </div>
+            </div>
+          }
         </div>
       </div>
-
-      <div class="about-details" data-aos="fade-left">
-        <div class="detail-card">
-          <h3>Personal Info</h3>
-          <div class="info-grid">
-            <div class="info-item">
-              <i class="fas fa-envelope"></i>
-              <span>{{ personalInfo.email }}</span>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-phone"></i>
-              <span>{{ personalInfo.phone }}</span>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>{{ personalInfo.location }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="detail-card" *ngIf="education$ | async as education">
-          <h3>Education</h3>
-          <div class="education-info">
-            <h4>{{ education.degree }}</h4>
-            <p>{{ education.institution }}</p>
-            <p>{{ education.year }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    }
   </div>
 </section>

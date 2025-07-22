@@ -1,29 +1,31 @@
 <section class="hero-section">
-  <div class="hero-content" *ngIf="personalInfo$ | async as personalInfo">
-    <div class="hero-text" data-aos="fade-up">
-      <h1 class="hero-title">
-        Hi, I'm <span class="highlight">{{ personalInfo.name }}</span>
-      </h1>
-      <h2 class="hero-subtitle">{{ personalInfo.title }}</h2>
-      <p class="hero-description">{{ personalInfo.summary }}</p>
-      <div class="hero-actions">
-        <div class="action-row-1">
-          <button class="btn btn-primary" (click)="scrollToProjects()">
-            View My Work
-          </button>
-          <button class="btn btn-outline" (click)="scrollToContact()">
-            Get in Touch
-          </button>
+  @if (personalInfo$ | async; as personalInfo) {
+    <div class="hero-content">
+      <div class="hero-text" data-aos="fade-up">
+        <h1 class="hero-title">
+          Hi, I'm <span class="highlight">{{ personalInfo.name }}</span>
+        </h1>
+        <h2 class="hero-subtitle">{{ personalInfo.title }}</h2>
+        <p class="hero-description">{{ personalInfo.summary }}</p>
+        <div class="hero-actions">
+          <div class="action-row-1">
+            <button class="btn btn-primary" (click)="scrollToProjects()">
+              View My Work
+            </button>
+            <button class="btn btn-outline" (click)="scrollToContact()">
+              Get in Touch
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image" data-aos="fade-left">
+        <div class="image-container">
+          <img [src]="personalInfo.profileImage" [alt]="personalInfo.name" />
+          <div class="image-overlay"></div>
         </div>
       </div>
     </div>
-    <div class="hero-image" data-aos="fade-left">
-      <div class="image-container">
-        <img [src]="personalInfo.profileImage" [alt]="personalInfo.name" />
-        <div class="image-overlay"></div>
-      </div>
-    </div>
-  </div>
+  }
   <div class="hero-scroll">
     <div class="scroll-indicator" (click)="scrollToAbout()">
       <i class="fas fa-chevron-down"></i>
@@ -35,17 +37,21 @@
     class="floating-resume-btn bottom-right"
     [class.downloading]="isDownloading"
     (click)="downloadResume()"
-  >
+    >
     <div class="resume-icon">
-      <i class="fas fa-file-download" *ngIf="!isDownloading"></i>
-      <div class="download-progress" *ngIf="isDownloading">
-        <div class="progress-circle">
-          <div
-            class="progress-fill"
-            [style.animation-duration]="downloadDuration + 'ms'"
-          ></div>
+      @if (!isDownloading) {
+        <i class="fas fa-file-download"></i>
+      }
+      @if (isDownloading) {
+        <div class="download-progress">
+          <div class="progress-circle">
+            <div
+              class="progress-fill"
+              [style.animation-duration]="downloadDuration + 'ms'"
+            ></div>
+          </div>
         </div>
-      </div>
+      }
     </div>
     <span class="resume-text">
       {{ isDownloading ? "Downloading..." : "Download CV" }}

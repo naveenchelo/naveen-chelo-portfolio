@@ -5,20 +5,25 @@
       <p class="section-subtitle">Technologies I work with</p>
     </div>
 
-    <div class="skills-content" *ngIf="skills$ | async as skills">
-      <div
-        class="skill-category"
-        *ngFor="let category of getSkillCategories(skills); let i = index"
-        [attr.data-aos]="'fade-up'"
-        [attr.data-aos-delay]="i * 100"
-      >
-        <h3>{{ category | titlecase }}</h3>
-        <div class="skill-tags">
-          <span class="skill-tag" *ngFor="let skill of skills[category]">
-            {{ skill }}
-          </span>
-        </div>
+    @if (skills$ | async; as skills) {
+      <div class="skills-content">
+        @for (category of getSkillCategories(skills); track category; let i = $index) {
+          <div
+            class="skill-category"
+            [attr.data-aos]="'fade-up'"
+            [attr.data-aos-delay]="i * 100"
+            >
+            <h3>{{ category | titlecase }}</h3>
+            <div class="skill-tags">
+              @for (skill of skills[category]; track skill) {
+                <span class="skill-tag">
+                  {{ skill }}
+                </span>
+              }
+            </div>
+          </div>
+        }
       </div>
-    </div>
+    }
   </div>
 </section>

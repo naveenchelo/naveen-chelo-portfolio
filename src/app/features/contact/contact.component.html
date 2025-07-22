@@ -5,123 +5,128 @@
       <p class="section-subtitle">Let's work together</p>
     </div>
 
-    <div class="contact-content" *ngIf="personalInfo$ | async as personalInfo">
-      <div class="contact-info" data-aos="fade-right">
-        <h3>Contact Information</h3>
-
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <div>
-            <h4>Email</h4>
-            <p>{{ personalInfo.email }}</p>
+    @if (personalInfo$ | async; as personalInfo) {
+      <div class="contact-content">
+        <div class="contact-info" data-aos="fade-right">
+          <h3>Contact Information</h3>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>{{ personalInfo.email }}</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Phone</h4>
+              <p>{{ personalInfo.phone }}</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Location</h4>
+              <p>{{ personalInfo.location }}</p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a
+              href="{{ personalInfo.linkedin }}"
+              target="_blank"
+              class="social-link"
+              >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="{{ personalInfo.github }}"
+              target="_blank"
+              class="social-link"
+              >
+              <i class="fab fa-github"></i>
+            </a>
           </div>
         </div>
-
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <div>
-            <h4>Phone</h4>
-            <p>{{ personalInfo.phone }}</p>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <div>
-            <h4>Location</h4>
-            <p>{{ personalInfo.location }}</p>
-          </div>
-        </div>
-
-        <div class="social-links">
-          <a
-            href="{{ personalInfo.linkedin }}"
-            target="_blank"
-            class="social-link"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a
-            href="{{ personalInfo.github }}"
-            target="_blank"
-            class="social-link"
-          >
-            <i class="fab fa-github"></i>
-          </a>
+        <div class="contact-form" data-aos="fade-left">
+          <!-- Success/Error Message Display -->
+          @if (submitMessage) {
+            <div
+              class="alert"
+              [ngClass]="'alert-' + submitMessageType"
+              >
+              {{ submitMessage }}
+            </div>
+          }
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Your Name"
+                formControlName="name"
+                [class.error]="isFieldInvalid('name')"
+                />
+              @if (isFieldInvalid('name')) {
+                <div class="error-message">
+                  Name is required and must be at least 2 characters long
+                </div>
+              }
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                placeholder="Your Email"
+                formControlName="email"
+                [class.error]="isFieldInvalid('email')"
+                />
+              @if (isFieldInvalid('email')) {
+                <div class="error-message">
+                  Please enter a valid email address
+                </div>
+              }
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Subject"
+                formControlName="subject"
+                [class.error]="isFieldInvalid('subject')"
+                />
+              @if (isFieldInvalid('subject')) {
+                <div class="error-message">
+                  Subject is required and must be at least 5 characters long
+                </div>
+              }
+            </div>
+            <div class="form-group">
+              <textarea
+                placeholder="Your Message"
+                formControlName="message"
+                [class.error]="isFieldInvalid('message')"
+                rows="5"
+              ></textarea>
+              @if (isFieldInvalid('message')) {
+                <div class="error-message">
+                  Message is required and must be at least 10 characters long
+                </div>
+              }
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="contactForm.invalid || isSubmitting"
+              >
+              @if (!isSubmitting) {
+                <span>Send Message</span>
+              }
+              @if (isSubmitting) {
+                <span>
+                  <i class="fas fa-spinner fa-spin"></i> Sending...
+                </span>
+              }
+            </button>
+          </form>
         </div>
       </div>
-
-      <div class="contact-form" data-aos="fade-left">
-        <!-- Success/Error Message Display -->
-        <div
-          *ngIf="submitMessage"
-          class="alert"
-          [ngClass]="'alert-' + submitMessageType"
-        >
-          {{ submitMessage }}
-        </div>
-
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <input
-              type="text"
-              placeholder="Your Name"
-              formControlName="name"
-              [class.error]="isFieldInvalid('name')"
-            />
-            <div *ngIf="isFieldInvalid('name')" class="error-message">
-              Name is required and must be at least 2 characters long
-            </div>
-          </div>
-
-          <div class="form-group">
-            <input
-              type="email"
-              placeholder="Your Email"
-              formControlName="email"
-              [class.error]="isFieldInvalid('email')"
-            />
-            <div *ngIf="isFieldInvalid('email')" class="error-message">
-              Please enter a valid email address
-            </div>
-          </div>
-
-          <div class="form-group">
-            <input
-              type="text"
-              placeholder="Subject"
-              formControlName="subject"
-              [class.error]="isFieldInvalid('subject')"
-            />
-            <div *ngIf="isFieldInvalid('subject')" class="error-message">
-              Subject is required and must be at least 5 characters long
-            </div>
-          </div>
-
-          <div class="form-group">
-            <textarea
-              placeholder="Your Message"
-              formControlName="message"
-              [class.error]="isFieldInvalid('message')"
-              rows="5"
-            ></textarea>
-            <div *ngIf="isFieldInvalid('message')" class="error-message">
-              Message is required and must be at least 10 characters long
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            class="btn btn-primary"
-            [disabled]="contactForm.invalid || isSubmitting"
-          >
-            <span *ngIf="!isSubmitting">Send Message</span>
-            <span *ngIf="isSubmitting">
-              <i class="fas fa-spinner fa-spin"></i> Sending...
-            </span>
-          </button>
-        </form>
-      </div>
-    </div>
+    }
   </div>
 </section>

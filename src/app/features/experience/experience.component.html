@@ -5,40 +5,46 @@
       <p class="section-subtitle">My professional journey</p>
     </div>
 
-    <div class="experience-timeline" *ngIf="experience$ | async as experiences">
-      <div class="timeline-container">
-        <div
-          class="timeline-item"
-          *ngFor="let exp of experiences; let i = index"
-          [attr.data-aos]="'fade-up'"
-          [attr.data-aos-delay]="i * 100"
-        >
-          <div class="timeline-content">
-            <div class="experience-card">
-              <div class="experience-header">
-                <h3>{{ exp.position }}</h3>
-                <h4>{{ exp.company }}</h4>
-                <span class="duration">{{ exp.duration }}</span>
-              </div>
-
-              <div class="clients-section">
-                <div class="client-item" *ngFor="let client of exp.clients">
-                  <h5>{{ client.name }}</h5>
-                  <p class="client-period">{{ client.period }}</p>
-                  <div class="achievements">
-                    <h6>Key Achievements:</h6>
-                    <ul>
-                      <li *ngFor="let achievement of client.achievements">
-                        {{ achievement }}
-                      </li>
-                    </ul>
+    @if (experience$ | async; as experiences) {
+      <div class="experience-timeline">
+        <div class="timeline-container">
+          @for (exp of experiences; track exp; let i = $index) {
+            <div
+              class="timeline-item"
+              [attr.data-aos]="'fade-up'"
+              [attr.data-aos-delay]="i * 100"
+              >
+              <div class="timeline-content">
+                <div class="experience-card">
+                  <div class="experience-header">
+                    <h3>{{ exp.position }}</h3>
+                    <h4>{{ exp.company }}</h4>
+                    <span class="duration">{{ exp.duration }}</span>
+                  </div>
+                  <div class="clients-section">
+                    @for (client of exp.clients; track client) {
+                      <div class="client-item">
+                        <h5>{{ client.name }}</h5>
+                        <p class="client-period">{{ client.period }}</p>
+                        <div class="achievements">
+                          <h6>Key Achievements:</h6>
+                          <ul>
+                            @for (achievement of client.achievements; track achievement) {
+                              <li>
+                                {{ achievement }}
+                              </li>
+                            }
+                          </ul>
+                        </div>
+                      </div>
+                    }
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
         </div>
       </div>
-    </div>
+    }
   </div>
 </section>
