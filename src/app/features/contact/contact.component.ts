@@ -6,9 +6,10 @@ import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss',
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrl: './contact.component.scss',
+    standalone: false
 })
 export class ContactComponent implements OnInit {
   personalInfo$: Observable<PersonalInfoInterface | undefined>;

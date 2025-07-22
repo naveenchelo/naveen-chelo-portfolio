@@ -4,9 +4,10 @@ import { SkillsInterface } from '../../core/models/portfolio.interface';
 import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
 
 @Component({
-  selector: 'app-skills',
-  templateUrl: './skills.component.html',
-  styleUrl: './skills.component.scss',
+    selector: 'app-skills',
+    templateUrl: './skills.component.html',
+    styleUrl: './skills.component.scss',
+    standalone: false
 })
 export class SkillsComponent {
   skills$: Observable<SkillsInterface | undefined>;

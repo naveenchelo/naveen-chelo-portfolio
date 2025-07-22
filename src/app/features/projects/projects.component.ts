@@ -4,9 +4,10 @@ import { ProjectInterface } from '../../core/models/portfolio.interface';
 import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss',
+    selector: 'app-projects',
+    templateUrl: './projects.component.html',
+    styleUrl: './projects.component.scss',
+    standalone: false
 })
 export class ProjectsComponent implements OnInit {
   projects$: Observable<ProjectInterface[] | undefined>;

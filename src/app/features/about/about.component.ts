@@ -7,9 +7,10 @@ import {
 import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.scss',
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrl: './about.component.scss',
+    standalone: false
 })
 export class AboutComponent {
   personalInfo$!: Observable<PersonalInfoInterface | undefined>;
