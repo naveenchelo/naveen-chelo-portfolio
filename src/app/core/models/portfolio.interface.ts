@@ -34,7 +34,7 @@ export interface ExperienceInterface {
   endDate?: string;
 }
 
-export interface ProjectInterface {
+export interface ClientInterface {
   id: number;
   title: string;
   description: string;
@@ -86,7 +86,7 @@ export interface PortfolioInterface {
   personalInfo: PersonalInfoInterface;
   skills: SkillsInterface;
   experience: ExperienceInterface[];
-  projects: ProjectInterface[];
+  clients: ClientInterface[];
   education: EducationInterface;
   certifications: string[];
   socialLinks?: SocialLinkInterface[];

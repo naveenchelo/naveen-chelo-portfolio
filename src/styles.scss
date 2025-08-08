@@ -941,7 +941,6 @@ body {
 
     img {
       width: 100%;
-      height: 100%;
       object-fit: cover;
     }
 
@@ -1306,18 +1305,53 @@ body {
 @media (max-width: 768px) {
   .experience-timeline {
     &::before {
-      left: 20px;
+      left: 30px;
     }
 
     .timeline-item {
+      margin-bottom: 3rem;
+
       &::after {
-        left: 20px;
+        left: 30px;
+        width: 16px;
+        height: 16px;
+        box-shadow: 0 0 0 6px var(--card-background);
       }
 
       &:nth-child(odd) .timeline-content,
       &:nth-child(even) .timeline-content {
-        margin-left: 60px;
+        margin-left: 70px;
         margin-right: 0;
+        padding: 1.5rem;
+      }
+    }
+  }
+
+  .experience-card {
+    .experience-header {
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      h4 {
+        font-size: 1rem;
+      }
+    }
+
+    .clients-section {
+      .client-item {
+        padding: 1rem;
+
+        h5 {
+          font-size: 1rem;
+        }
+
+        .achievements {
+          ul li {
+            font-size: 0.9rem;
+            line-height: 1.5;
+          }
+        }
       }
     }
   }
@@ -1415,7 +1449,6 @@ body {
 
   .project-image {
     position: relative;
-    height: 200px;
     overflow: hidden;
 
     img {

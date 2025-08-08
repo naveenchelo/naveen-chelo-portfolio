@@ -23,12 +23,12 @@ export class PortfolioService {
 
   private processPortfolioData(data: PortfolioInterface): PortfolioInterface {
     // Add any data processing logic here
-    return {
-      ...data,
-      projects: data.projects.map((project) => ({
+    if (Array.isArray((data as any).projects)) {
+      (data as any).projects = (data as any).projects.map((project: any) => ({
         ...project,
         image: project.image || 'images/default-project.jpg',
-      })),
-    };
+      }));
+    }
+    return data;
   }
 }
