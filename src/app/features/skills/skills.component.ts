@@ -2,6 +2,9 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { SkillsInterface } from '../../core/models/portfolio.interface';
 import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
+import { Chart, ChartConfiguration, ChartType, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 
 interface SkillWithLevel {
   name: string;
@@ -27,53 +30,43 @@ export class SkillsComponent {
   skillsWithLevels: SkillWithLevel[] = [];
   filteredSkills: SkillWithLevel[] = [];
   activeCategory = 'all';
-  chartInstance: any;
+  chartInstance: Chart | null = null;
   isAnimationComplete = false;
 
-  // Predefined skill levels (you can move this to your JSON data later)
   private skillLevels: Record<
     string,
     { level: number; years?: number; projects?: number }
   > = {
-    // Frontend Technologies
-    Angular: { level: 95, years: 4, projects: 15 },
-    TypeScript: { level: 90, years: 4, projects: 20 },
-    JavaScript: { level: 88, years: 5, projects: 25 },
-    HTML5: { level: 95, years: 6, projects: 30 },
-    CSS3: { level: 90, years: 6, projects: 30 },
-    SCSS: { level: 85, years: 3, projects: 20 },
-    React: { level: 75, years: 2, projects: 8 },
-    'Vue.js': { level: 60, years: 1, projects: 3 },
+    // Languages
+    TypeScript: { level: 95, years: 3, projects: 8 },
+    'JavaScript (ES6+)': { level: 90, years: 4, projects: 8 },
+    HTML5: { level: 95, years: 4, projects: 10 },
+    CSS3: { level: 90, years: 4, projects: 10 },
+    Sass: { level: 85, years: 3, projects: 10 },
 
-    // Backend Technologies
-    'Node.js': { level: 80, years: 3, projects: 12 },
-    'Express.js': { level: 75, years: 2, projects: 8 },
-    NestJS: { level: 70, years: 1, projects: 5 },
-    Python: { level: 65, years: 2, projects: 6 },
-    Java: { level: 70, years: 2, projects: 7 },
+    // Frameworks
+    'Angular (v17+)': { level: 95, years: 3, projects: 8 },
+    NgRx: { level: 90, years: 2, projects: 3 },
+    RxJS: { level: 88, years: 3, projects: 6 },
+    'Angular Material': { level: 85, years: 3, projects: 7 },
+    'Native Federation': { level: 80, years: 1, projects: 3 },
 
-    // Databases
-    MongoDB: { level: 75, years: 2, projects: 10 },
-    PostgreSQL: { level: 70, years: 2, projects: 8 },
-    MySQL: { level: 72, years: 3, projects: 12 },
-    Firebase: { level: 80, years: 2, projects: 10 },
+    // Tools
+    Git: { level: 90, years: 4, projects: 10 },
+    'VS Code': { level: 95, years: 4, projects: 10 },
+    Figma: { level: 75, years: 2, projects: 8 },
+    'REST API Integration': { level: 88, years: 3, projects: 10 },
+    JIRA: { level: 85, years: 3, projects: 10 },
+    'CI/CD Pipelines': { level: 75, years: 2, projects: 5 },
 
-    // DevOps & Tools
-    Git: { level: 90, years: 5, projects: 30 },
-    Docker: { level: 70, years: 2, projects: 8 },
-    AWS: { level: 65, years: 1, projects: 5 },
-    Jenkins: { level: 60, years: 1, projects: 4 },
-
-    // State Management & Libraries
-    NgRx: { level: 85, years: 3, projects: 10 },
-    RxJS: { level: 88, years: 4, projects: 15 },
-    Redux: { level: 75, years: 2, projects: 8 },
-
-    // Testing
-    Jest: { level: 80, years: 3, projects: 15 },
-    Cypress: { level: 75, years: 2, projects: 8 },
-    Jasmine: { level: 85, years: 4, projects: 12 },
-    Karma: { level: 80, years: 4, projects: 12 },
+    // Concepts
+    'Micro Front-end Architecture': { level: 85, years: 1, projects: 3 },
+    'Module Federation': { level: 80, years: 1, projects: 3 },
+    'Responsive Web Design (RWD)': { level: 90, years: 4, projects: 8 },
+    'State Management': { level: 90, years: 3, projects: 3 },
+    'Agile Methodologies': { level: 85, years: 3, projects: 10 },
+    'UI/UX Principles': { level: 80, years: 3, projects: 8 },
+    'Performance Optimization': { level: 85, years: 3, projects: 10 },
 
     // Default for skills not specified
     default: { level: 70, years: 1, projects: 3 },
@@ -141,100 +134,112 @@ export class SkillsComponent {
   private initializeRadarChart() {
     if (!this.radarChartRef?.nativeElement) return;
 
+    // Destroy existing chart
+    if (this.chartInstance) {
+      this.chartInstance.destroy();
+      this.chartInstance = null;
+    }
+
     // Get top 8 skills for radar chart
     const topSkills = this.skillsWithLevels.slice(0, 8);
+    if (topSkills.length === 0) return;
 
     const ctx = this.radarChartRef.nativeElement.getContext('2d');
     if (!ctx) return;
 
-    // Destroy existing chart
-    if (this.chartInstance) {
-      this.chartInstance.destroy();
-    }
+    // Chart configuration
+    const config: ChartConfiguration<'radar'> = {
+      type: 'radar',
+      data: {
+        labels: topSkills.map((skill) => skill.name),
+        datasets: [
+          {
+            label: 'Skill Level',
+            data: topSkills.map((skill) => skill.level),
+            backgroundColor: 'rgba(102, 126, 234, 0.2)',
+            borderColor: 'rgba(102, 126, 234, 0.8)',
+            borderWidth: 2,
+            pointBackgroundColor: '#667eea',
+            pointBorderColor: '#667eea',
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            titleColor: '#fff',
+            bodyColor: '#fff',
+            borderColor: '#667eea',
+            borderWidth: 1,
+            callbacks: {
+              label: (context) => {
+                const skill = topSkills[context.dataIndex];
+                return [
+                  `Level: ${skill.level}%`,
+                  `Experience: ${skill.years} year${
+                    skill.years !== 1 ? 's' : ''
+                  }`,
+                  `Projects: ${skill.projects}`,
+                ];
+              },
+            },
+          },
+        },
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            min: 0,
+            ticks: {
+              stepSize: 20,
+              color: 'rgba(102, 126, 234, 0.6)',
+              font: {
+                size: 10,
+              },
+              callback: function (value) {
+                return value + '%';
+              },
+            },
+            grid: {
+              color: 'rgba(102, 126, 234, 0.2)',
+              lineWidth: 1,
+            },
+            angleLines: {
+              color: 'rgba(102, 126, 234, 0.3)',
+              lineWidth: 1,
+            },
+            pointLabels: {
+              color: '#333',
+              font: {
+                size: 11,
+                weight: 500,
+              },
+              padding: 10,
+            },
+          },
+        },
+        animation: {
+          duration: 1500,
+          easing: 'easeInOutCubic',
+        },
+        interaction: {
+          intersect: false,
+          mode: 'point',
+        },
+      },
+    };
 
-    // Create radar chart using Chart.js (you'll need to install: npm install chart.js)
-    // For now, we'll create a custom SVG radar chart
-    this.createCustomRadarChart(topSkills);
-  }
-
-  private createCustomRadarChart(skills: SkillWithLevel[]) {
-    const canvas = this.radarChartRef.nativeElement;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = Math.min(centerX, centerY) - 40;
-    const angleStep = (2 * Math.PI) / skills.length;
-
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw grid circles
-    ctx.strokeStyle = 'rgba(102, 126, 234, 0.2)';
-    ctx.lineWidth = 1;
-    for (let i = 1; i <= 5; i++) {
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, (radius * i) / 5, 0, 2 * Math.PI);
-      ctx.stroke();
-    }
-
-    // Draw axis lines and labels
-    skills.forEach((skill, index) => {
-      const angle = index * angleStep - Math.PI / 2;
-      const endX = centerX + Math.cos(angle) * radius;
-      const endY = centerY + Math.sin(angle) * radius;
-
-      // Draw axis line
-      ctx.strokeStyle = 'rgba(102, 126, 234, 0.3)';
-      ctx.beginPath();
-      ctx.moveTo(centerX, centerY);
-      ctx.lineTo(endX, endY);
-      ctx.stroke();
-
-      // Draw skill label
-      ctx.fillStyle = '#333';
-      ctx.font = '12px Inter, sans-serif';
-      ctx.textAlign = 'center';
-      const labelX = centerX + Math.cos(angle) * (radius + 20);
-      const labelY = centerY + Math.sin(angle) * (radius + 20);
-      ctx.fillText(skill.name, labelX, labelY);
-    });
-
-    // Draw data polygon
-    ctx.strokeStyle = 'rgba(102, 126, 234, 0.8)';
-    ctx.fillStyle = 'rgba(102, 126, 234, 0.2)';
-    ctx.lineWidth = 2;
-
-    ctx.beginPath();
-    skills.forEach((skill, index) => {
-      const angle = index * angleStep - Math.PI / 2;
-      const distance = (skill.level / 100) * radius;
-      const x = centerX + Math.cos(angle) * distance;
-      const y = centerY + Math.sin(angle) * distance;
-
-      if (index === 0) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
-      }
-    });
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-
-    // Draw data points
-    skills.forEach((skill, index) => {
-      const angle = index * angleStep - Math.PI / 2;
-      const distance = (skill.level / 100) * radius;
-      const x = centerX + Math.cos(angle) * distance;
-      const y = centerY + Math.sin(angle) * distance;
-
-      ctx.fillStyle = '#667eea';
-      ctx.beginPath();
-      ctx.arc(x, y, 4, 0, 2 * Math.PI);
-      ctx.fill();
-    });
+    // Create the chart
+    this.chartInstance = new Chart(ctx, config);
   }
 
   private animateSkillBars() {
@@ -303,9 +308,6 @@ export class SkillsComponent {
       frameworks: 'fas fa-layer-group',
       tools: 'fas fa-tools',
       concepts: 'fas fa-lightbulb',
-      databases: 'fas fa-database',
-      testing: 'fas fa-bug',
-      devops: 'fas fa-cloud',
       default: 'fas fa-star',
     };
 
@@ -330,35 +332,58 @@ export class SkillsComponent {
       .slice(0, count);
   }
 
-  // Learning timeline data - you can move this to your JSON data later
   learningMilestones = [
     {
       year: '2024',
-      title: 'Advanced State Management',
+      title: 'Micro Frontend & Performance',
       description:
-        'Mastered NgRx, learned advanced RxJS patterns, and implemented complex state architectures.',
-      skills: ['NgRx', 'RxJS', 'State Patterns', 'Angular Signals'],
+        'Leading micro frontend architecture implementation for NEST UK pension platform, focusing on performance optimization and scalable solutions.',
+      skills: [
+        'Native Federation',
+        'Module Federation',
+        'Performance Optimization',
+        'Angular 17',
+      ],
     },
     {
       year: '2023',
-      title: 'Full-Stack Development',
+      title: 'Advanced Angular & State Management',
       description:
-        'Expanded to backend development with Node.js and cloud technologies.',
-      skills: ['Node.js', 'Express.js', 'MongoDB', 'AWS', 'Docker'],
+        'Deep dive into NgRx state management, RxJS patterns, and complex component architecture for enterprise applications.',
+      skills: [
+        'NgRx',
+        'RxJS',
+        'State Management',
+        'Component Architecture',
+        'Angular Material',
+      ],
     },
     {
       year: '2022',
-      title: 'Angular Expertise',
+      title: 'Professional Angular Development',
       description:
-        'Became proficient in Angular framework and modern frontend development practices.',
-      skills: ['Angular', 'TypeScript', 'SCSS', 'Jest', 'Cypress'],
+        'Started at TCS, working on CVS Pharmacy customer portal and healthcare applications with Angular and TypeScript.',
+      skills: [
+        'Angular',
+        'TypeScript',
+        'REST APIs',
+        'Healthcare APIs',
+        'Agile Methodologies',
+      ],
     },
     {
       year: '2021',
-      title: 'Frontend Foundation',
+      title: 'Frontend Development Foundation',
       description:
-        'Started journey in web development with core technologies and JavaScript frameworks.',
-      skills: ['JavaScript', 'HTML5', 'CSS3', 'React', 'Git'],
+        'Built strong foundation in modern web development, preparing for professional Angular development career.',
+      skills: [
+        'JavaScript',
+        'HTML5',
+        'CSS3',
+        'Git',
+        'VS Code',
+        'Responsive Design',
+      ],
     },
   ];
 }
