@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProjectInterface } from '../../core/models/portfolio.interface';
+import { ClientInterface } from '../../core/models/portfolio.interface';
 import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
 
 @Component({
@@ -9,18 +9,18 @@ import { PortfolioSandbox } from '../../sandbox/portfolio.sandbox';
   styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent implements OnInit {
-  projects$: Observable<ProjectInterface[] | undefined>;
-  filteredProjects: ProjectInterface[] = [];
+  clients$: Observable<ClientInterface[] | undefined>;
+  filteredClients: ClientInterface[] = [];
   currentFilter = 'all';
 
   constructor(private portfolioSandbox: PortfolioSandbox) {
-    this.projects$ = this.portfolioSandbox.projects$;
+    this.clients$ = this.portfolioSandbox.clients$;
   }
 
   ngOnInit() {
-    this.projects$.subscribe((projects) => {
-      if (projects) {
-        this.filteredProjects = projects;
+    this.clients$.subscribe((clients) => {
+      if (clients) {
+        this.filteredClients = clients;
       }
     });
   }
@@ -28,20 +28,20 @@ export class ProjectsComponent implements OnInit {
   filterProjects(filter: string) {
     this.currentFilter = filter;
 
-    this.projects$.subscribe((projects) => {
-      if (!projects) return;
+    this.clients$.subscribe((clients) => {
+      if (!clients) return;
 
       switch (filter) {
         case 'featured':
-          this.filteredProjects = projects.filter((p) => p.featured);
+          this.filteredClients = clients.filter((c) => c.featured);
           break;
         case 'production':
-          this.filteredProjects = projects.filter(
-            (p) => p.status === 'Production'
+          this.filteredClients = clients.filter(
+            (c) => c.status === 'Production'
           );
           break;
         default:
-          this.filteredProjects = projects;
+          this.filteredClients = clients;
       }
     });
   }

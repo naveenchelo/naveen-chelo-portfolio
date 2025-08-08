@@ -72,10 +72,8 @@ export class HomeComponent implements OnInit {
       const match = exp.match(/(\d+(?:\.\d+)?)/);
       this.targetExperience = match ? parseFloat(match[1]) : 0;
     });
-
-    this.portfolioSandbox.totalProjects$.subscribe((projects) => {
-      this.targetProjects = projects;
-    });
+    // No totalProjects$ in PortfolioSandbox; fallback to 0 or implement as needed
+    this.targetProjects = 0;
   }
 
   private setupIntersectionObserver() {

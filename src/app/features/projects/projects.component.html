@@ -1,8 +1,8 @@
-<section class="projects-section">
+<!-- <section class="projects-section">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">What I've been working on</p>
+      <h2 class="section-title">Clients</h2>
+      <p class="section-subtitle">Major clients I've worked with</p>
     </div>
 
     <div class="projects-filter" data-aos="fade-up">
@@ -11,29 +11,29 @@
       </button>
     </div>
 
-    <div class="projects-grid" *ngIf="projects$ | async as projects">
+    <div class="projects-grid" *ngIf="clients$ | async as clients">
       <div
         class="project-card"
-        *ngFor="let project of filteredProjects; let i = index"
+        *ngFor="let client of filteredClients; let i = index"
         [attr.data-aos]="'fade-up'"
         [attr.data-aos-delay]="i * 100"
       >
         <div class="project-image">
-          <img [src]="project.image" [alt]="project.title" />
+          <img [src]="client.image" [alt]="client.title" />
           <div class="project-overlay">
             <div class="project-actions">
               <a
-                [href]="project.liveUrl"
+                [href]="client.liveUrl"
                 target="_blank"
-                *ngIf="project.liveUrl"
+                *ngIf="client.liveUrl"
                 class="btn btn-primary"
               >
                 <i class="fas fa-external-link-alt"></i> About
               </a>
               <a
-                [href]="project.githubUrl"
+                [href]="client.githubUrl"
                 target="_blank"
-                *ngIf="project.githubUrl"
+                *ngIf="client.githubUrl"
                 class="btn btn-outline"
               >
                 <i class="fab fa-github"></i> Code
@@ -44,21 +44,21 @@
 
         <div class="project-content">
           <div class="project-header">
-            <h3>{{ project.title }}</h3>
+            <h3>{{ client.title }}</h3>
           </div>
 
-          <p class="project-description">{{ project.description }}</p>
+          <p class="project-description">{{ client.description }}</p>
 
           <div class="project-technologies">
-            <span class="tech-tag" *ngFor="let tech of project.technologies">
+            <span class="tech-tag" *ngFor="let tech of client.technologies">
               {{ tech }}
             </span>
           </div>
 
-          <div class="project-highlights" *ngIf="project.highlights">
+          <div class="project-highlights" *ngIf="client.highlights">
             <h4>Key Features:</h4>
             <ul>
-              <li *ngFor="let highlight of project.highlights">
+              <li *ngFor="let highlight of client.highlights">
                 {{ highlight }}
               </li>
             </ul>
@@ -67,4 +67,4 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->

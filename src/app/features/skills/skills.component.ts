@@ -38,35 +38,35 @@ export class SkillsComponent {
     { level: number; years?: number; projects?: number }
   > = {
     // Languages
-    TypeScript: { level: 95, years: 3, projects: 8 },
-    'JavaScript (ES6+)': { level: 90, years: 4, projects: 8 },
-    HTML5: { level: 95, years: 4, projects: 10 },
-    CSS3: { level: 90, years: 4, projects: 10 },
-    Sass: { level: 85, years: 3, projects: 10 },
+    TypeScript: { level: 95, years: 3, projects: 6 },
+    'JavaScript (ES6+)': { level: 90, years: 4, projects: 6 },
+    HTML5: { level: 95, years: 4, projects: 6 },
+    CSS3: { level: 90, years: 4, projects: 6 },
+    Sass: { level: 85, years: 3, projects: 5 },
 
     // Frameworks
-    'Angular (v17+)': { level: 95, years: 3, projects: 8 },
+    'Angular (v17+)': { level: 95, years: 3, projects: 6 },
     NgRx: { level: 90, years: 2, projects: 3 },
-    RxJS: { level: 88, years: 3, projects: 6 },
-    'Angular Material': { level: 85, years: 3, projects: 7 },
-    'Native Federation': { level: 80, years: 1, projects: 3 },
+    RxJS: { level: 88, years: 3, projects: 5 },
+    'Angular Material': { level: 85, years: 3, projects: 5 },
+    'Native Federation': { level: 80, years: 1, projects: 2 },
 
     // Tools
-    Git: { level: 90, years: 4, projects: 10 },
-    'VS Code': { level: 95, years: 4, projects: 10 },
-    Figma: { level: 75, years: 2, projects: 8 },
-    'REST API Integration': { level: 88, years: 3, projects: 10 },
-    JIRA: { level: 85, years: 3, projects: 10 },
-    'CI/CD Pipelines': { level: 75, years: 2, projects: 5 },
+    Git: { level: 90, years: 4, projects: 6 },
+    'VS Code': { level: 95, years: 4, projects: 6 },
+    Figma: { level: 75, years: 2, projects: 4 },
+    'REST API Integration': { level: 88, years: 3, projects: 6 },
+    JIRA: { level: 85, years: 3, projects: 6 },
+    'CI/CD Pipelines': { level: 75, years: 2, projects: 3 },
 
     // Concepts
-    'Micro Front-end Architecture': { level: 85, years: 1, projects: 3 },
-    'Module Federation': { level: 80, years: 1, projects: 3 },
-    'Responsive Web Design (RWD)': { level: 90, years: 4, projects: 8 },
+    'Micro Front-end Architecture': { level: 85, years: 1, projects: 2 },
+    'Module Federation': { level: 80, years: 1, projects: 2 },
+    'Responsive Web Design (RWD)': { level: 90, years: 4, projects: 6 },
     'State Management': { level: 90, years: 3, projects: 3 },
-    'Agile Methodologies': { level: 85, years: 3, projects: 10 },
-    'UI/UX Principles': { level: 80, years: 3, projects: 8 },
-    'Performance Optimization': { level: 85, years: 3, projects: 10 },
+    'Agile Methodologies': { level: 85, years: 3, projects: 6 },
+    'UI/UX Principles': { level: 80, years: 3, projects: 5 },
+    'Performance Optimization': { level: 85, years: 3, projects: 5 },
 
     // Default for skills not specified
     default: { level: 70, years: 1, projects: 3 },
