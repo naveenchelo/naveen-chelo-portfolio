@@ -4,35 +4,73 @@
       <h1 class="hero-title">
         Hi, I'm <span class="highlight">{{ personalInfo.name }}</span>
       </h1>
-      <h2 class="hero-subtitle">{{ personalInfo.title }}</h2>
+      <h2 class="hero-subtitle">
+        <app-typing-animation
+          [texts]="typingTexts"
+          [typeSpeed]="80"
+          [deleteSpeed]="40"
+          [pauseDuration]="2000"
+          [loop]="true"
+        >
+        </app-typing-animation>
+      </h2>
       <p class="hero-description">{{ personalInfo.summary }}</p>
-      <div class="hero-actions">
+
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
         <div class="action-row-1">
-          <button class="btn btn-primary" (click)="scrollToProjects()">
+          <button
+            class="btn btn-primary pulse-animation"
+            (click)="scrollToProjects()"
+          >
+            <i class="fas fa-code"></i>
             View My Work
           </button>
           <button class="btn btn-outline" (click)="scrollToContact()">
+            <i class="fas fa-paper-plane"></i>
             Get in Touch
           </button>
         </div>
       </div>
     </div>
+
     <div class="hero-image" data-aos="fade-left">
-      <div class="image-container">
-        <img [src]="personalInfo.profileImage" [alt]="personalInfo.name" />
+      <div class="image-container" [class.loading]="!personalInfo.profileImage">
+        <div class="image-skeleton" *ngIf="!personalInfo.profileImage"></div>
+        <img
+          [src]="personalInfo.profileImage"
+          [alt]="personalInfo.name"
+          (load)="onImageLoad()"
+          [style.display]="imageLoaded ? 'block' : 'none'"
+        />
         <div class="image-overlay"></div>
+
+        <!-- Floating badges -->
+        <div class="floating-badge badge-angular">
+          <i class="fab fa-angular"></i>
+        </div>
+        <div class="floating-badge badge-typescript">
+          <i class="fab fa-js-square"></i>
+        </div>
+        <div class="floating-badge badge-node">
+          <i class="fab fa-node-js"></i>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Enhanced Scroll Indicator -->
   <div class="hero-scroll">
     <div class="scroll-indicator" (click)="scrollToAbout()">
-      <i class="fas fa-chevron-down"></i>
+      <span class="scroll-text">Scroll Down</span>
+      <div class="scroll-arrow">
+        <i class="fas fa-chevron-down"></i>
+      </div>
     </div>
   </div>
 
   <!-- Floating Resume Download Button -->
   <div
-    class="floating-resume-btn bottom-right"
+    class="floating-resume-btn bottom-right enhanced"
     [class.downloading]="isDownloading"
     (click)="downloadResume()"
   >
@@ -57,16 +95,10 @@
   </div>
 
   <!-- Download Success Animation -->
-  <div class="download-success" [class.show]="showDownloadSuccess">
+  <div class="download-success enhanced" [class.show]="showDownloadSuccess">
     <div class="success-content">
       <i class="fas fa-check-circle"></i>
       <span>Resume Downloaded Successfully!</span>
-    </div>
-  </div>
-
-  <div class="hero-scroll">
-    <div class="scroll-indicator" (click)="scrollToAbout()">
-      <i class="fas fa-chevron-down"></i>
     </div>
   </div>
 </section>
