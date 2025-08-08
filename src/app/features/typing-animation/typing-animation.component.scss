@@ -1,0 +1,33 @@
+.typing-container {
+    display: inline-block;
+    font-family: inherit;
+}
+
+.typed-text {
+    font-weight: inherit;
+    color: inherit;
+}
+
+.cursor {
+    font-weight: 300;
+    color: var(--primary-color);
+    font-size: 0.9em;
+    animation: none;
+}
+
+.cursor.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}

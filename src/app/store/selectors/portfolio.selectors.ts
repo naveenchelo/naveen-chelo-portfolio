@@ -36,12 +36,13 @@ export const selectExperience = createSelector(
 
 export const selectProjects = createSelector(
   selectPortfolioData,
-  (data) => data?.projects
+  (data: any) => data?.projects
 );
 
 export const selectFeaturedProjects = createSelector(
   selectProjects,
-  (projects) => projects?.filter((project) => project.featured)
+  (projects: any[] | undefined) =>
+    projects?.filter((project: any) => project.featured)
 );
 
 export const selectEducation = createSelector(

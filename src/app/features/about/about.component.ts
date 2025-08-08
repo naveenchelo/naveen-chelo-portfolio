@@ -15,14 +15,12 @@ export class AboutComponent {
   personalInfo$!: Observable<PersonalInfoInterface | undefined>;
   education$!: Observable<EducationInterface | undefined>;
   totalExperience$!: Observable<string>;
-  totalProjects$!: Observable<number>;
   currentClient$!: Observable<string>;
 
   constructor(private portfolioSandbox: PortfolioSandbox) {
     this.personalInfo$ = this.portfolioSandbox.myPersonalInfo$;
     this.education$ = this.portfolioSandbox.education$;
     this.totalExperience$ = this.portfolioSandbox.totalExperience$;
-    this.totalProjects$ = this.portfolioSandbox.totalProjects$;
     this.currentClient$ = this.portfolioSandbox.getCurrentClient();
   }
 }

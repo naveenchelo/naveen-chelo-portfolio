@@ -19,7 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './store/reducers/app.reducer';
 import { PortfolioEffects } from './store/effects/portfolio.effects';
-import { PortfolioSandbox } from './sandbox/portfolio.sandbox';
+import { TypingAnimationComponent } from './features/typing-animation/typing-animation.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { PortfolioSandbox } from './sandbox/portfolio.sandbox';
     ProjectsComponent,
     SkillsComponent,
     ContactComponent,
+    TypingAnimationComponent,
   ],
   imports: [
     BrowserModule,

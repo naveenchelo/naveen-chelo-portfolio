@@ -27,6 +27,7 @@
     "@ngrx/store": "^18.1.1",
     "@ngrx/store-devtools": "^18.1.1",
     "aos": "^2.3.4",
+    "chart.js": "^4.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
@@ -35,6 +36,7 @@
     "@angular-devkit/build-angular": "^18.2.20",
     "@angular/cli": "^18.2.20",
     "@angular/compiler-cli": "^18.2.0",
+    "@types/chart.js": "^2.9.41",
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.21",
     "github-pages": "^3.0.2",

@@ -9,7 +9,7 @@ import {
   PersonalInfoInterface,
   SkillsInterface,
   ExperienceInterface,
-  ProjectInterface,
+  ClientInterface,
   EducationInterface,
 } from '../core/models/portfolio.interface';
 
@@ -88,11 +88,11 @@ export class PortfolioSandbox {
     return this.store.select(PortfolioSelectors.selectExperience);
   }
 
-  public get projects$(): Observable<ProjectInterface[] | undefined> {
+  public get clients$(): Observable<ClientInterface[] | undefined> {
     return this.store.select(PortfolioSelectors.selectProjects);
   }
 
-  public get featuredProjects$(): Observable<ProjectInterface[] | undefined> {
+  public get featuredClients$(): Observable<ClientInterface[] | undefined> {
     return this.store.select(PortfolioSelectors.selectFeaturedProjects);
   }
 
@@ -271,8 +271,8 @@ export class PortfolioSandbox {
     );
   }
 
-  public get totalProjects$(): Observable<number> {
-    return this.projects$.pipe(map((projects) => projects?.length || 0));
+  public get totalClients$(): Observable<number> {
+    return this.clients$.pipe(map((clients) => clients?.length || 0));
   }
 
   public loadPortfolioData(): void {
@@ -284,9 +284,9 @@ export class PortfolioSandbox {
   }
 
   // Utility methods
-  public getProjectById(id: number): Observable<ProjectInterface | undefined> {
-    return this.projects$.pipe(
-      map((projects) => projects?.find((project) => project.id === id))
+  public getClientById(id: number): Observable<ClientInterface | undefined> {
+    return this.clients$.pipe(
+      map((clients) => clients?.find((client) => client.id === id))
     );
   }
 
