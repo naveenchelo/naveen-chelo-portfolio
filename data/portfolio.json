@@ -12,13 +12,21 @@
     "aboutMe": "I'm a frontend developer based in Bengaluru with a strong focus on building modern, scalable web applications using Angular. I enjoy creating responsive user interfaces, implementing clean state management with NgRx, and working with micro frontend architectures using Native Federation. I’ve worked on enterprise-grade apps in the finance and healthcare domains, where I contributed to everything from reusable UI components to performance optimization. I’m always curious about how things work under the hood and love refining both the developer experience and the end-user experience. When I’m not coding, I’m either exploring new frontend trends, fine-tuning my personal projects, or helping others in the dev community."
   },
   "skills": {
-    "languages": ["TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Sass"],
+    "languages": [
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "HTML5",
+      "CSS3",
+      "Sass",
+      "JSON"
+    ],
     "frameworks": [
       "Angular (v17+)",
       "NgRx",
       "RxJS",
       "Angular Material",
-      "Native Federation"
+      "Native Federation",
+      "Angular CLI"
     ],
     "tools": [
       "Git",
@@ -26,7 +34,9 @@
       "Figma",
       "REST API Integration",
       "JIRA",
-      "CI/CD Pipelines"
+      "CI/CD Pipelines",
+      "Chrome DevTools",
+      "Postman"
     ],
     "concepts": [
       "Micro Front-end Architecture",
@@ -35,7 +45,9 @@
       "State Management",
       "Agile Methodologies",
       "UI/UX Principles",
-      "Performance Optimization"
+      "Performance Optimization",
+      "Component Architecture",
+      "Dependency Injection"
     ]
   },
   "experience": [
@@ -81,10 +93,10 @@
       ]
     }
   ],
-  "projects": [
+  "clients": [
     {
       "id": 1,
-      "title": "Pension Management Platform",
+      "title": "NEST UK - Pension Management Platform",
       "description": "Critical modules for a large-scale pension management platform serving millions of users across the UK.",
       "longDescription": "As part of the NEST UK team, I contributed to building and maintaining critical modules for one of the UK's largest pension management platforms. The project involved complex state management, micro-frontend architecture, and seamless integration with multiple backend services. The platform handles sensitive financial data and requires high performance, security, and scalability.",
       "technologies": [
@@ -111,7 +123,7 @@
     },
     {
       "id": 2,
-      "title": "Healthcare Customer Portal",
+      "title": "CVS Health - Healthcare Customer Portal",
       "description": "Customer-facing pharmacy portal with comprehensive UX/UI features for prescription management and healthcare services.",
       "longDescription": "Developed key components for CVS Pharmacy's customer portal, focusing on user experience and seamless integration with multiple healthcare APIs. The project involved creating reusable Angular components, implementing responsive design principles, and ensuring HIPAA compliance for healthcare data handling.",
       "technologies": [
