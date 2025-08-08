@@ -1,22 +1,152 @@
-<section class="skills-section">
+<!-- src/app/features/skills/enhanced-skills.component.html -->
+<section class="enhanced-skills-section">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">Skills</h2>
-      <p class="section-subtitle">Technologies I work with</p>
+      <h2 class="section-title">Skills & Expertise</h2>
+      <p class="section-subtitle">
+        Technologies I work with and my proficiency levels
+      </p>
     </div>
 
-    <div class="skills-content" *ngIf="skills$ | async as skills">
-      <div
-        class="skill-category"
-        *ngFor="let category of getSkillCategories(skills); let i = index"
-        [attr.data-aos]="'fade-up'"
-        [attr.data-aos-delay]="i * 100"
+    <!-- Skills Filter -->
+    <div class="skills-filter" data-aos="fade-up" data-aos-delay="100">
+      <button
+        class="filter-btn"
+        *ngFor="let category of getSkillCategories()"
+        [class.active]="activeCategory === category"
+        (click)="filterSkills(category)"
       >
-        <h3>{{ category | titlecase }}</h3>
-        <div class="skill-tags">
-          <span class="skill-tag" *ngFor="let skill of skills[category]">
-            {{ skill }}
-          </span>
+        {{ category | titlecase }}
+      </button>
+    </div>
+
+    <div class="skills-dashboard">
+      <!-- Radar Chart Section -->
+      <div class="chart-section" data-aos="fade-right" data-aos-delay="200">
+        <div class="chart-container">
+          <h3>Top Skills Overview</h3>
+          <div class="radar-chart-wrapper">
+            <canvas #radarChart class="radar-chart" width="400" height="400">
+            </canvas>
+          </div>
+          <div class="chart-legend">
+            <div
+              class="legend-item"
+              *ngFor="let skill of skillsWithLevels.slice(0, 8)"
+            >
+              <div
+                class="legend-color"
+                [style.background-color]="getSkillLevelColor(skill.level)"
+              ></div>
+              <span>{{ skill.name }} ({{ skill.level }}%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills List with Progress Bars -->
+      <div
+        class="skills-list-section"
+        data-aos="fade-left"
+        data-aos-delay="300"
+      >
+        <h3>Detailed Skills Breakdown</h3>
+        <div class="skills-container" #skillBarsContainer>
+          <div
+            class="skill-item"
+            *ngFor="let skill of filteredSkills; let i = index"
+            [attr.data-aos]="'fade-up'"
+            [attr.data-aos-delay]="i * 50"
+          >
+            <div class="skill-header">
+              <div class="skill-name-section">
+                <h4>{{ skill.name }}</h4>
+                <div class="skill-meta">
+                  <span class="skill-category">{{
+                    skill.category | titlecase
+                  }}</span>
+                  <span
+                    class="skill-level-text"
+                    [style.color]="getSkillLevelColor(skill.level)"
+                  >
+                    {{ getSkillLevelText(skill.level) }}
+                  </span>
+                </div>
+              </div>
+              <div class="skill-percentage">{{ skill.level }}%</div>
+            </div>
+
+            <div class="skill-progress-container">
+              <div
+                class="skill-progress"
+                [attr.data-level]="skill.level"
+                [style.background-color]="getSkillLevelColor(skill.level)"
+              ></div>
+            </div>
+
+            <div class="skill-details" *ngIf="skill.years || skill.projects">
+              <div class="detail-item" *ngIf="skill.years">
+                <i class="fas fa-calendar-alt"></i>
+                <span
+                  >{{ skill.years }} year{{
+                    skill.years > 1 ? "s" : ""
+                  }}
+                  experience</span
+                >
+              </div>
+              <div class="detail-item" *ngIf="skill.projects">
+                <i class="fas fa-project-diagram"></i>
+                <span
+                  >{{ skill.projects }} project{{
+                    skill.projects > 1 ? "s" : ""
+                  }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Summary Cards -->
+    <div class="skills-summary" data-aos="fade-up" data-aos-delay="400">
+      <div
+        class="summary-card"
+        *ngFor="let category of getSkillCategories().slice(1)"
+      >
+        <div class="card-icon">
+          <i [class]="getCategoryIcon(category)"></i>
+        </div>
+        <div class="card-content">
+          <h4>{{ category | titlecase }}</h4>
+          <p>{{ getSkillsCountByCategory(category) }} Technologies</p>
+          <div class="category-skills">
+            <span
+              class="mini-skill-tag"
+              *ngFor="let skill of getTopSkillsForCategory(category, 3)"
+            >
+              {{ skill.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learning Timeline (Optional) -->
+    <div class="learning-timeline" data-aos="fade-up" data-aos-delay="500">
+      <h3>Learning Journey</h3>
+      <div class="timeline-container">
+        <div class="timeline-item" *ngFor="let milestone of learningMilestones">
+          <div class="timeline-year">{{ milestone.year }}</div>
+          <div class="timeline-content">
+            <h5>{{ milestone.title }}</h5>
+            <p>{{ milestone.description }}</p>
+            <div class="milestone-skills">
+              <span class="skill-badge" *ngFor="let skill of milestone.skills">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
