@@ -12,13 +12,21 @@
     "aboutMe": "I'm a frontend developer based in Bengaluru with a strong focus on building modern, scalable web applications using Angular. I enjoy creating responsive user interfaces, implementing clean state management with NgRx, and working with micro frontend architectures using Native Federation. I’ve worked on enterprise-grade apps in the finance and healthcare domains, where I contributed to everything from reusable UI components to performance optimization. I’m always curious about how things work under the hood and love refining both the developer experience and the end-user experience. When I’m not coding, I’m either exploring new frontend trends, fine-tuning my personal projects, or helping others in the dev community."
   },
   "skills": {
-    "languages": ["TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Sass"],
+    "languages": [
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "HTML5",
+      "CSS3",
+      "Sass",
+      "JSON"
+    ],
     "frameworks": [
       "Angular (v17+)",
       "NgRx",
       "RxJS",
       "Angular Material",
-      "Native Federation"
+      "Native Federation",
+      "Angular CLI"
     ],
     "tools": [
       "Git",
@@ -26,7 +34,9 @@
       "Figma",
       "REST API Integration",
       "JIRA",
-      "CI/CD Pipelines"
+      "CI/CD Pipelines",
+      "Chrome DevTools",
+      "Postman"
     ],
     "concepts": [
       "Micro Front-end Architecture",
@@ -35,7 +45,9 @@
       "State Management",
       "Agile Methodologies",
       "UI/UX Principles",
-      "Performance Optimization"
+      "Performance Optimization",
+      "Component Architecture",
+      "Dependency Injection"
     ]
   },
   "experience": [

@@ -76,15 +76,28 @@
             &::before {
                 left: 0;
             }
+
+            // Dark mode support
+            [data-theme="dark"] & {
+                box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+            }
         }
 
-        &.active,
-        &:hover {
-            color: white;
-            border-color: var(--primary-color);
+        &.active {
+            color: white !important;
+            border-color: var(--primary-color) !important;
+            background: var(--gradient-primary) !important;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3) !important;
+            transform: translateY(-2px) !important;
+            font-weight: 600 !important;
 
             &::before {
-                left: 0;
+                left: 0 !important;
+            }
+
+            // Dark mode support
+            [data-theme="dark"] & {
+                box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4) !important;
             }
         }
     }
@@ -575,6 +588,7 @@
                     font-size: 1.1rem;
                     font-weight: 600;
                     margin-bottom: 0.5rem;
+                    margin-top: 0.8rem;
                     color: var(--text-color);
                 }
 
